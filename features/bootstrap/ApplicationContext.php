@@ -14,7 +14,7 @@ use Matcher\ApplicationOutputMatcher;
 /**
  * Defines application features from the specific context.
  */
-class ApplicationContext implements Context, MatchersProviderInterface
+class ApplicationContext implements Context, MatchersProviderInterface, SnippetAcceptingContext
 {
     /**
      * @var Application
@@ -72,5 +72,45 @@ class ApplicationContext implements Context, MatchersProviderInterface
             new ApplicationOutputMatcher(),
         );
     }
-    
+
+
+    /**
+     * @Given I work in an empty project
+     */
+    public function iWorkInAnEmptyProject()
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @Given I use fake command runner
+     */
+    public function iUseFakeCommandRunner()
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @When I run patch:up
+     */
+    public function iRunPatchUp()
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @Given the file :arg1 contains:
+     */
+    public function theFileContains($arg1, PyStringNode $string)
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @Then the command should succeed in running actions:
+     */
+    public function theCommandShouldSucceedInRunningActions(PyStringNode $string)
+    {
+        throw new PendingException();
+    }
 }

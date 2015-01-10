@@ -4,6 +4,7 @@ Feature: Developer runs patch:up command
 
   Scenario: Stamping a project without configuration
     Given I work in an empty project
+    Given I use fake command runner
      When I run patch:up
      Then I should see "Configuration file not found"
 
