@@ -1,0 +1,28 @@
+{
+    "name":        "gajdaw/stamp",
+    "description": "Versioning Tool",
+    "keywords":    ["vcs", "git", "version", "tag", "commit"],
+    "homepage":    "http://stamp.github.io/",
+    "type":        "library",
+    "license":     "MIT",
+    "authors":     [
+        {
+            "name":     "Włodzimierz Gajda",
+            "email":    "gajdaw@gajdaw.pl",
+            "homepage": "http://gajdaw.pl"
+        }
+    ],
+
+    "require": {
+        "php": ">=5.3.3"
+    },
+
+    "autoload": {
+        "psr-0": {
+            "Gajdaw": "src/"
+        }
+    },
+
+    "bin": ["bin/stamp"]
+
+}
