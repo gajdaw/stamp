@@ -14,11 +14,17 @@ use Stamp\Console\Command\GreetCommand;
 class Application extends BaseApplication
 {
     /**
+     * @var CommandRunner
+     */
+    private $commandRunner = null;
+
+    /**
      * @param string $version
      */
-    public function __construct($version)
+    public function __construct($version, CommandRunner $commandRunner = null)
     {
         parent::__construct('stamp', $version);
+        $this->commandRunner = $commandRunner;
 
         $this->add(new GreetCommand());
     }
