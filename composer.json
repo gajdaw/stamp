@@ -14,11 +14,13 @@
     ],
 
     "require": {
-        "php": ">=5.3.3"
+        "php":            ">=5.3.3",
+        "symfony/console": "~2.6"
     },
 
     "require-dev": {
-        "behat/behat": "~3.0"
+        "behat/behat": "~3.0",
+        "bossa/phpspec2-expect": "~1.0"
     },
 
     "config": {
@@ -27,7 +29,7 @@
 
     "autoload": {
         "psr-0": {
-            "Gajdaw": "src/"
+            "Stamp": "src/"
         }
     },
 
