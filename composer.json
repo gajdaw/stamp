@@ -17,6 +17,14 @@
         "php": ">=5.3.3"
     },
 
+    "require-dev": {
+        "behat/behat": "~3.0"
+    },
+
+    "config": {
+        "bin-dir": "bin/"
+    },
+
     "autoload": {
         "psr-0": {
             "Gajdaw": "src/"
