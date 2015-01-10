@@ -3,12 +3,12 @@ Feature: Developer runs patch:up command
   I want to upgrade the patch version
 
   Scenario: Stamping a project without configuration
-    Given I work in an empty project
     Given I use fake command runner
      When I run patch:up
      Then I should see "Configuration file not found"
 
   Scenario: Stamping one file with a configuration file given
+    Given I use fake command runner
     Given the file ".stamper.yml" contains:
       """
       version_source:
@@ -30,7 +30,7 @@ Feature: Developer runs patch:up command
     When I run patch:up
     Then the command should succeed in running actions:
     """
-    ParseVersion[50.1021.173]
-    PatchUp[50.1021.174]
-    FilePregReplace[metadata.json,/^  "version": "([^"]+)",$/,/  "version": "50.1021.173",/]
+    SetVersion[50.1021.173]
+    SetVersion[50.1021.174]
+    FilePregReplace[metadata.json,/^  "version": "([^"]+)",$/,/  "version": "50.1021.174",/]
     """
