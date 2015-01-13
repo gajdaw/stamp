@@ -9,14 +9,21 @@ class ParseVariableFromFile
     private $filename;
     private $regex;
     private $fileReader;
+    private $variableParser;
+    private $variableContainer;
     private $result;
     private $output;
     private $verbose = false;
+    private $dryRun = false;
 
-    public function __construct(FileReader $fileReader, ParseVariable $variableParser)
-    {
+    public function __construct(
+        FileReader $fileReader,
+        ParseVariable $variableParser,
+        VariableContainer $variableContainer
+    ) {
         $this->fileReader = $fileReader;
         $this->variableParser = $variableParser;
+        $this->variableContainer = $variableContainer;
     }
 
     public function setFilename($filename)
@@ -54,15 +61,17 @@ class ParseVariableFromFile
         }
 
         $this->result = $this->variableParser->getResult();
+        $key = array_keys($this->result)[0];
 
         if ($this->verbose) {
-            $key = array_keys($this->result)[0];
             $this->output = sprintf(
                 'parse_variable_from_file["filename"="%s"]["%s"="%s"]',
                 $this->filename,
                 $key, $this->result[$key]
             );
         }
+
+        $this->variableContainer->setVariable($key, $this->result[$key]);
 
         return $resultToBeReturned;
     }
@@ -80,5 +89,10 @@ class ParseVariableFromFile
     public function setVerbose($verbose)
     {
         $this->verbose = $verbose;
+    }
+
+    public function setDryRun($dryRun)
+    {
+        $this->dryRun = $dryRun;
     }
 }

@@ -6,13 +6,21 @@ use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Stamp\Action\FileReader;
 use Stamp\Action\ParseVariable;
+use Stamp\Action\VariableContainer;
 
 class ParseVariableFromFileSpec extends ObjectBehavior
 {
 
-    function let(FileReader $fileReader, ParseVariable $variableParser)
-    {
-        $this->beConstructedWith($fileReader, $variableParser);
+    function let(
+        FileReader $fileReader,
+        ParseVariable $variableParser,
+        VariableContainer $variableContainer
+    ) {
+        $this->beConstructedWith(
+            $fileReader,
+            $variableParser,
+            $variableContainer
+        );
     }
 
     function it_is_initializable()
@@ -20,7 +28,7 @@ class ParseVariableFromFileSpec extends ObjectBehavior
         $this->shouldHaveType('Stamp\Action\ParseVariableFromFile');
     }
 
-    function it_should_parse_a_variable_from_file(FileReader $fileReader, ParseVariable $variableParser)
+    function it_should_parse_a_variable_from_file_in_dry_run_mode(FileReader $fileReader, ParseVariable $variableParser)
     {
         $text = '
             "name"  :   "Lorem"
@@ -46,8 +54,10 @@ class ParseVariableFromFileSpec extends ObjectBehavior
         $this->getOutput()->shouldReturn(null);
     }
 
-    function it_should_parse_a_variable_from_file_in_verbose_mode(FileReader $fileReader, ParseVariable $variableParser)
-    {
+    function it_should_parse_a_variable_from_file_in_verbose_mode(
+        FileReader $fileReader, ParseVariable $variableParser,
+        VariableContainer $variableContainer
+    ) {
         $text = '
             "name"  :   "Lorem"
         ';
@@ -65,7 +75,7 @@ class ParseVariableFromFileSpec extends ObjectBehavior
             'regex' => $params['regex']
         ))->shouldBeCalled();
         $variableParser->getResult()->shouldBeCalled();
-
+        $variableContainer->setVariable('name', 'Lorem')->shouldBeCalled();
 
         $this->setParams($params);
         $this->setVerbose(true);
