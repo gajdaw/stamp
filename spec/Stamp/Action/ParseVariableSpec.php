@@ -23,6 +23,21 @@ class ParseVariableSpec extends ObjectBehavior
         $regex = '/"lorem": *"(?P<NAME>[^"]+)"/';
         $this->setText($text);
         $this->setRegex($regex);
-        $this->getParsed()->shouldReturn(array('NAME' => '1.2.3.4'));
+        $this->exec()->shouldReturn(array('NAME' => '1.2.3.4'));
     }
+
+    function it_should_parse_using_params()
+    {
+        $params = array(
+            'text' => '
+                {
+                    "xyz": "abc"
+                }
+            ',
+            'regex' => '/"xyz": *"(?P<XyZ>[^"]+)"/'
+        );
+        $this->setParams($params);
+        $this->exec()->shouldReturn(array('XyZ' => 'abc'));
+    }
+
 }

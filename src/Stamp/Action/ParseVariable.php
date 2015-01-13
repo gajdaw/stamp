@@ -17,7 +17,7 @@ class ParseVariable
         $this->regex = $regex;
     }
 
-    public function getParsed()
+    public function exec()
     {
         if (preg_match($this->regex, $this->text, $matches)) {
             unset($matches[0]);
@@ -25,5 +25,11 @@ class ParseVariable
             return $matches;
         }
         return false;
+    }
+
+    public function setParams($array)
+    {
+        $this->setText($array['text']);
+        $this->setRegex($array['regex']);
     }
 }
