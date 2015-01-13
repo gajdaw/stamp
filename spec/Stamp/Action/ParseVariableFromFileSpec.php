@@ -73,4 +73,28 @@ class ParseVariableFromFileSpec extends ObjectBehavior
         $this->getResult()->shouldReturn(array('name' => 'Lorem'));
         $this->getOutput()->shouldReturn('ParseVariableFromFile["filename"="f.json"]["name"="Lorem"]');
     }
+
+    function it_should_fail_when_variable_is_not_present(FileReader $fileReader, ParseVariable $variableParser)
+    {
+        $text = '...the text does not contain this variable...';
+        $params = array(
+            'filename' => 'f.json',
+            'regex' => '/"name" *: *"(?P<name>[^"]+)"/'
+        );
+
+        $fileReader->fileGetContents($params['filename'])->willReturn($text);
+
+        $variableParser->exec()->willReturn(false);
+        $variableParser->setParams(array(
+            'text' => $text,
+            'regex' => $params['regex']
+        ))->shouldBeCalled();
+
+
+        $this->setParams($params);
+        $this->setVerbose(true);
+        $this->exec()->shouldReturn(false);
+        $this->getResult()->shouldReturn(null);
+        $this->getOutput()->shouldReturn('ParseVariableFromFile["filename"="f.json"]');
+    }
 }

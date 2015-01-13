@@ -44,6 +44,15 @@ class ParseVariableFromFile
         ));
 
         $resultToBeReturned = $this->variableParser->exec();
+        if (!$resultToBeReturned) {
+            $this->output = sprintf(
+                'ParseVariableFromFile["filename"="%s"]',
+                $this->filename
+            );
+
+            return false;
+        }
+
         $this->result = $this->variableParser->getResult();
 
         if ($this->verbose) {
