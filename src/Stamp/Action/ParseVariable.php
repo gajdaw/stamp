@@ -2,13 +2,16 @@
 
 namespace Stamp\Action;
 
-class ParseVariable
+class ParseVariable extends BaseAction implements ActionInterface
 {
     private $text = '';
     private $regex = '';
-    private $result;
-    private $output;
-    private $verbose = false;
+
+    public function setParams($array)
+    {
+        $this->setText($array['text']);
+        $this->setRegex($array['regex']);
+    }
 
     public function setText($text)
     {
@@ -29,39 +32,20 @@ class ParseVariable
         }
 
         if ($resultOfMatching) {
+
             unset($matches[0]);
             unset($matches[1]);
 
             if ($this->verbose) {
                 $key = array_keys($matches)[0];
-                $this->output = sprintf('parse_variable["%s"=>"%s"]', $key, $matches[$key]);
+                $this->setOutput(sprintf('parse_variable["%s"=>"%s"]', $key, $matches[$key]));
             }
 
-            $this->result = $matches;
+            $this->setResult($matches);
 
             return true;
         }
         return false;
     }
 
-    public function setParams($array)
-    {
-        $this->setText($array['text']);
-        $this->setRegex($array['regex']);
-    }
-
-    public function getOutput()
-    {
-        return $this->output;
-    }
-
-    public function getResult()
-    {
-        return $this->result;
-    }
-
-    public function setVerbose($verbose)
-    {
-        $this->verbose = $verbose;
-    }
 }

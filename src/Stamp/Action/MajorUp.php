@@ -5,22 +5,17 @@ namespace Stamp\Action;
 use Stamp\Tools\VersionParser;
 use Stamp\Tools\VariableContainer;
 
-class MajorUp
+class MajorUp extends BaseAction implements ActionInterface
 {
     private $variable;
 
     private $versionParser;
     private $variableContainer;
 
-    private $result;
-    private $output;
-    private $verbose = false;
-
-
-    public function __construct(VersionParser $versionParser, VariableContainer $variableContainer)
+    public function __construct(VariableContainer $variableContainer, VersionParser $versionParser)
     {
-        $this->versionParser = $versionParser;
         $this->variableContainer = $variableContainer;
+        $this->versionParser = $versionParser;
     }
 
     public function setParams($array)
@@ -44,31 +39,14 @@ class MajorUp
             $parsed['patch']
         );
         if ($this->verbose) {
-            $this->output = sprintf(
+            $this->setOutput(sprintf(
                 'major_up["%s"="%s"]',
                 $this->variable,
                 $increased
-            );
+            ));
         }
         $this->variableContainer->setVariable($this->variable, $increased);
         return true;
     }
-
-    public function getResult()
-    {
-        return $this->result;
-    }
-
-    public function getOutput()
-    {
-        return $this->output;
-    }
-
-    public function setVerbose($verbose)
-    {
-        $this->verbose = $verbose;
-    }
-
-
 
 }

@@ -8,8 +8,8 @@ services:
     stamp.actions.major_up:
         class: Stamp\Action\MajorUp
         arguments:
-            - "@stamp.actions.version_parser"
             - "@stamp.actions.variable_container"
+            - "@stamp.actions.version_parser"
 
     stamp.actions.file_reader:
         class: Stamp\Tools\FileReader
@@ -20,8 +20,8 @@ services:
     stamp.actions.parse_variable_from_file:
         class: Stamp\Action\ParseVariableFromFile
         arguments:
+            - "@stamp.actions.variable_container"
             - "@stamp.actions.file_reader"
             - "@stamp.actions.parse_variable"
-            - "@stamp.actions.variable_container"
 
 

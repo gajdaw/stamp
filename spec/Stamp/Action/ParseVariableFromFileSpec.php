@@ -12,14 +12,14 @@ class ParseVariableFromFileSpec extends ObjectBehavior
 {
 
     function let(
+        VariableContainer $variableContainer,
         FileReader $fileReader,
-        ParseVariable $variableParser,
-        VariableContainer $variableContainer
+        ParseVariable $variableParser
     ) {
         $this->beConstructedWith(
+            $variableContainer,
             $fileReader,
-            $variableParser,
-            $variableContainer
+            $variableParser
         );
     }
 

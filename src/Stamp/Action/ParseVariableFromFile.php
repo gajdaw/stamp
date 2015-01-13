@@ -5,26 +5,22 @@ namespace Stamp\Action;
 use Stamp\Tools\FileReader;
 use Stamp\Tools\VariableContainer;
 
-class ParseVariableFromFile
+class ParseVariableFromFile extends BaseAction implements ActionInterface
 {
     private $filename;
     private $regex;
     private $fileReader;
     private $variableParser;
     private $variableContainer;
-    private $result;
-    private $output;
-    private $verbose = false;
-    private $dryRun = false;
 
     public function __construct(
+        VariableContainer $variableContainer,
         FileReader $fileReader,
-        ParseVariable $variableParser,
-        VariableContainer $variableContainer
+        ParseVariable $variableParser
     ) {
+        $this->variableContainer = $variableContainer;
         $this->fileReader = $fileReader;
         $this->variableParser = $variableParser;
-        $this->variableContainer = $variableContainer;
     }
 
     public function setFilename($filename)
@@ -53,23 +49,23 @@ class ParseVariableFromFile
 
         $resultToBeReturned = $this->variableParser->exec();
         if (!$resultToBeReturned) {
-            $this->output = sprintf(
+            $this->setOutput(sprintf(
                 'parse_variable_from_file["filename"="%s"]',
                 $this->filename
-            );
+            ));
 
             return false;
         }
 
-        $this->result = $this->variableParser->getResult();
+        $this->setResult($this->variableParser->getResult());
         $key = array_keys($this->result)[0];
 
         if ($this->verbose) {
-            $this->output = sprintf(
+            $this->setOutput(sprintf(
                 'parse_variable_from_file["filename"="%s"]["%s"="%s"]',
                 $this->filename,
                 $key, $this->result[$key]
-            );
+            ));
         }
 
         $this->variableContainer->setVariable($key, $this->result[$key]);
@@ -77,23 +73,4 @@ class ParseVariableFromFile
         return $resultToBeReturned;
     }
 
-    public function getResult()
-    {
-        return $this->result;
-    }
-
-    public function getOutput()
-    {
-        return $this->output;
-    }
-
-    public function setVerbose($verbose)
-    {
-        $this->verbose = $verbose;
-    }
-
-    public function setDryRun($dryRun)
-    {
-        $this->dryRun = $dryRun;
-    }
 }

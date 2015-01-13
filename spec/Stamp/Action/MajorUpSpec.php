@@ -10,16 +10,16 @@ use Stamp\Tools\VariableContainer;
 
 class MajorUpSpec extends ObjectBehavior
 {
-    function let(VersionParser $versionParser, VariableContainer $variableContainer)
+    function let(VariableContainer $variableContainer, VersionParser $versionParser)
     {
-        $this->beConstructedWith($versionParser, $variableContainer);
+        $this->beConstructedWith($variableContainer, $versionParser);
     }
 
     function it_is_initializable()
     {
         $this->shouldHaveType('Stamp\Action\MajorUp');
     }
-    function it_should_parse_version(VersionParser $versionParser, VariableContainer $variableContainer)
+    function it_should_parse_version(VariableContainer $variableContainer, VersionParser $versionParser)
     {
         $tmpVersion = '3.421.55';
 
