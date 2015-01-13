@@ -46,7 +46,7 @@ class ParseVariableFromFile
         $resultToBeReturned = $this->variableParser->exec();
         if (!$resultToBeReturned) {
             $this->output = sprintf(
-                'ParseVariableFromFile["filename"="%s"]',
+                'parse_variable_from_file["filename"="%s"]',
                 $this->filename
             );
 
@@ -58,7 +58,7 @@ class ParseVariableFromFile
         if ($this->verbose) {
             $key = array_keys($this->result)[0];
             $this->output = sprintf(
-                'ParseVariableFromFile["filename"="%s"]["%s"="%s"]',
+                'parse_variable_from_file["filename"="%s"]["%s"="%s"]',
                 $this->filename,
                 $key, $this->result[$key]
             );

@@ -66,7 +66,7 @@ class ParseVariableSpec extends ObjectBehavior
         $this->setVerbose(true);
         $this->exec()->shouldReturn(true);
         $this->getResult()->shouldReturn(array('url' => 'http://example.net'));
-        $this->getOutput()->shouldReturn('ParseVariable["url"=>"http://example.net"]');
+        $this->getOutput()->shouldReturn('parse_variable["url"=>"http://example.net"]');
     }
 
     function it_should_throw_an_exception_for_incorrect_regex()

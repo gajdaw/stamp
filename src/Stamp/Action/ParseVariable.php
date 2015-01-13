@@ -34,7 +34,7 @@ class ParseVariable
 
             if ($this->verbose) {
                 $key = array_keys($matches)[0];
-                $this->output = sprintf('ParseVariable["%s"=>"%s"]', $key, $matches[$key]);
+                $this->output = sprintf('parse_variable["%s"=>"%s"]', $key, $matches[$key]);
             }
 
             $this->result = $matches;
