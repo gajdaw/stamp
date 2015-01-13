@@ -21,7 +21,7 @@ class Application extends BaseApplication
     /**
      * @param string $version
      */
-    public function __construct($version, CommandRunner $commandRunner = null)
+    public function __construct($version = '0.1-dev', CommandRunner $commandRunner = null)
     {
         parent::__construct('stamp', $version);
         $this->commandRunner = $commandRunner;

@@ -36,27 +36,53 @@ class ApplicationContext implements Context, MatchersProviderInterface, SnippetA
      */
     public function setupApplication()
     {
-        $this->application = new Application('0.1-dev');
+        $this->application = new Application();
         $this->application->setAutoExit(false);
         $this->tester = new ApplicationTester($this->application);
     }
 
     /**
-     * @When I run greet
+     * @When I run command :command in verbose dry mode
      */
-    public function iRunGreet()
+    public function iRunCommandInVerboseDryMode($command = null)
     {
         $arguments = array (
-            'command' => 'greet'
+            'command' => $command
         );
 
-        $this->lastExitCode = $this->tester->run($arguments, array('interactive' => false));
+        $this->addOptionToArguments('--dry-run', $arguments);
+        $this->addOptionToArguments('--verbose', $arguments);
+
+        $this->lastExitCode = $this->tester->run($arguments);
+    }
+
+    /**
+     * @param string $option
+     * @param array $arguments
+     */
+    private function addOptionToArguments($option, array &$arguments)
+    {
+        if ($option) {
+            if (preg_match('/(?P<option>[a-z-]+)=(?P<value>[a-z.]+)/', $option, $matches)) {
+                $arguments[$matches['option']] = $matches['value'];
+            } else {
+                $arguments['--' . trim($option, '"')] = true;
+            }
+        }
     }
 
     /**
      * @Then I should see :output
      */
     public function iShouldSee($output)
+    {
+        expect($this->tester)->toHaveOutput((string)$output);
+    }
+
+    /**
+     * @Then the output should contain:
+     */
+    public function theOutputShouldContain(PyStringNode $output)
     {
         expect($this->tester)->toHaveOutput((string)$output);
     }
@@ -73,44 +99,4 @@ class ApplicationContext implements Context, MatchersProviderInterface, SnippetA
         );
     }
 
-
-    /**
-     * @Given I work in an empty project
-     */
-    public function iWorkInAnEmptyProject()
-    {
-        throw new PendingException();
-    }
-
-    /**
-     * @Given I use fake command runner
-     */
-    public function iUseFakeCommandRunner()
-    {
-        throw new PendingException();
-    }
-
-    /**
-     * @When I run patch:up
-     */
-    public function iRunPatchUp()
-    {
-        throw new PendingException();
-    }
-
-    /**
-     * @Given the file :arg1 contains:
-     */
-    public function theFileContains($arg1, PyStringNode $string)
-    {
-        throw new PendingException();
-    }
-
-    /**
-     * @Then the command should succeed in running actions:
-     */
-    public function theCommandShouldSucceedInRunningActions(PyStringNode $string)
-    {
-        throw new PendingException();
-    }
 }
