@@ -23,7 +23,21 @@ class ParseVariableSpec extends ObjectBehavior
         $regex = '/"lorem": *"(?P<NAME>[^"]+)"/';
         $this->setText($text);
         $this->setRegex($regex);
-        $this->exec()->shouldReturn(array('NAME' => '1.2.3.4'));
+        $this->exec()->shouldReturn(true);
+        $this->getResult()->shouldReturn(array('NAME' => '1.2.3.4'));
+        $this->getOutput()->shouldReturn(null);
+    }
+
+    function it_should_fail_when_var_is_not_found()
+    {
+        $params = array(
+            'text' => '...lorem ipsum...',
+            'regex' => '/"xyz": *"(?P<XyZ>[^"]+)"/'
+        );
+        $this->setParams($params);
+        $this->exec()->shouldReturn(false);
+        $this->getResult()->shouldReturn(null);
+        $this->getOutput()->shouldReturn(null);
     }
 
     function it_should_parse_using_params()
@@ -37,7 +51,9 @@ class ParseVariableSpec extends ObjectBehavior
             'regex' => '/"xyz": *"(?P<XyZ>[^"]+)"/'
         );
         $this->setParams($params);
-        $this->exec()->shouldReturn(array('XyZ' => 'abc'));
+        $this->exec()->shouldReturn(true);
+        $this->getResult()->shouldReturn(array('XyZ' => 'abc'));
+        $this->getOutput()->shouldReturn(null);
     }
 
     function it_should_parse_using_params_in_verbose_mode()
@@ -48,7 +64,22 @@ class ParseVariableSpec extends ObjectBehavior
         );
         $this->setParams($params);
         $this->setVerbose(true);
-        $this->exec()->shouldReturn('ParseVariable["url"=>"http://example.net"]');
+        $this->exec()->shouldReturn(true);
+        $this->getResult()->shouldReturn(array('url' => 'http://example.net'));
+        $this->getOutput()->shouldReturn('ParseVariable["url"=>"http://example.net"]');
+    }
+
+    function it_should_throw_an_exception_for_incorrect_regex()
+    {
+        $params = array(
+            'text'  => '  "url"  :  "http://example.net" ',
+            'regex' => '/"url" *: *"(?P<url>[^"]+"/'
+        );
+        $this->setParams($params);
+        $this->shouldThrow(new \RuntimeException(sprintf(
+            'Error during parsing regex [[%s]]',
+            $params['regex']
+        )))->duringExec();
     }
 
 }

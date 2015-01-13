@@ -6,6 +6,8 @@ class ParseVariable
 {
     private $text = '';
     private $regex = '';
+    private $result;
+    private $output;
     private $verbose = false;
 
     public function setText($text)
@@ -20,14 +22,24 @@ class ParseVariable
 
     public function exec()
     {
-        if (preg_match($this->regex, $this->text, $matches)) {
+        try {
+            $resultOfMatching = preg_match($this->regex, $this->text, $matches);
+        } catch (\PhpSpec\Exception\Example\ErrorException $e) {
+            throw new \RuntimeException(sprintf('Error during parsing regex [[%s]]', $this->regex));
+        }
+
+        if ($resultOfMatching) {
             unset($matches[0]);
             unset($matches[1]);
+
             if ($this->verbose) {
                 $key = array_keys($matches)[0];
-                return sprintf('ParseVariable["%s"=>"%s"]', $key, $matches[$key]);
+                $this->output = sprintf('ParseVariable["%s"=>"%s"]', $key, $matches[$key]);
             }
-            return $matches;
+
+            $this->result = $matches;
+
+            return true;
         }
         return false;
     }
@@ -36,6 +48,16 @@ class ParseVariable
     {
         $this->setText($array['text']);
         $this->setRegex($array['regex']);
+    }
+
+    public function getOutput()
+    {
+        return $this->output;
+    }
+
+    public function getResult()
+    {
+        return $this->result;
     }
 
     public function setVerbose($verbose)
