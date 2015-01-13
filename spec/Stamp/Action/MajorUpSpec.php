@@ -36,6 +36,6 @@ class MajorUpSpec extends ObjectBehavior
         $this->setVerbose(true);
         $this->setParams($params);
         $this->exec()->shouldReturn(true);
-        $this->getOutput()->shouldReturn('increase_major_version["version"="4.421.55"]');
+        $this->getOutput()->shouldReturn('major_up["version"="4.421.55"]');
     }
 }

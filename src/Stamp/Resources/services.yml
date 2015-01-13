@@ -5,7 +5,7 @@ services:
     stamp.actions.variable_container:
         class: Stamp\Action\VariableContainer
 
-    stamp.actions.increase_major_version:
+    stamp.actions.major_up:
         class: Stamp\Action\MajorUp
         arguments:
             - "@stamp.actions.version_parser"

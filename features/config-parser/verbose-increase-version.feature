@@ -12,7 +12,7 @@ Feature: Developer runs actions to increase version number
             regex:    '/"version" *: *"(?P<version>[^"]+)"/'
             filename: 'metadata.json'
         -
-          name: increase_major_version
+          name: major_up
           parameters:
             variable: 'version'
 
@@ -29,5 +29,5 @@ Feature: Developer runs actions to increase version number
     Then the output should contain:
     """
     parse_variable_from_file["filename"="metadata.json"]["version"="50.1021.173"]
-    increase_major_version["version"="51.1021.173"]
+    major_up["version"="51.1021.173"]
     """

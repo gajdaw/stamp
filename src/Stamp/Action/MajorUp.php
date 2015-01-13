@@ -42,7 +42,7 @@ class MajorUp
         );
         if ($this->verbose) {
             $this->output = sprintf(
-                'increase_major_version["%s"="%s"]',
+                'major_up["%s"="%s"]',
                 $this->variable,
                 $increased
             );
