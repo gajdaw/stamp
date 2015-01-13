@@ -8,19 +8,23 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 
-class GreetCommand extends BaseCommand
+class PatchUpCommand extends BaseCommand
 {
 
     protected function configure()
     {
         $this
-            ->setName('greet')
-            ->setDescription('The prints a greeting.');
+            ->setName('patch:up')
+            ->setDescription('The command to increase patch number by 1.')
+            ->addOption(
+                'dry-run',
+                null,
+                InputOption::VALUE_OPTIONAL,
+                'Should the command run in dry mode?'
+            );
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $greeting = 'Hello';
-        $output->writeln($greeting);
     }
 }

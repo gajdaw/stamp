@@ -50,8 +50,8 @@ class ApplicationContext implements Context, MatchersProviderInterface, SnippetA
             'command' => $command
         );
 
-        $this->addOptionToArguments('--dry-run', $arguments);
-        $this->addOptionToArguments('--verbose', $arguments);
+        $this->addOptionToArguments('dry-run', $arguments);
+        $this->addOptionToArguments('verbose', $arguments);
 
         $this->lastExitCode = $this->tester->run($arguments);
     }
