@@ -24,9 +24,35 @@ class PatchUpCommand extends BaseCommand
             );
     }
 
+    public function getDefaultValue(InputInterface $input, $name, $default = false)
+    {
+        $result = $default;
+        if ($input->getOption($name)) {
+            $result = $input->getOption($name);
+        }
+
+        return $result;
+    }
+
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $dry_run = $this->getDefaultValue($input, 'dry-run');
+        $verbose = $this->getDefaultValue($input, 'verbose');
+
         $container = $this->getApplication()->getContainer();
         $config = $this->getApplication()->getConfig();
+
+        foreach ($config['actions'] as $action) {
+            $executor = $container->get('stamp.actions.' . $action['name']);
+            $executor->setParams($action['parameters']);
+            $executor->setVerbose($verbose);
+            $executor->exec();
+            if ($verbose) {
+                $output->write($executor->getOutput());
+            }
+            if (!$dry_run) {
+                //perform operation
+            }
+        }
     }
 }

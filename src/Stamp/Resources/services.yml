@@ -1,4 +1,14 @@
 services:
-    stamp.actions.parseVariable:
+    stamp.actions.file_reader:
+        class: Stamp\Action\FileReader
+
+    stamp.actions.parse_variable:
         class: Stamp\Action\ParseVariable
+
+    stamp.actions.parse_variable_from_file:
+        class: Stamp\Action\ParseVariableFromFile
+        arguments:
+            - "@stamp.actions.file_reader"
+            - "@stamp.actions.parse_variable"
+
 
