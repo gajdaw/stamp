@@ -10,8 +10,7 @@ use Symfony\Component\Yaml\Yaml;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
-use Stamp\Console\Command\PatchUpCommand;
-use Stamp\Console\Command\MajorUpCommand;
+use Stamp\Console\Command\RawRunCommand;
 
 /**
  * The command line application entry point
@@ -29,8 +28,7 @@ class Application extends BaseApplication
     {
         parent::__construct('stamp', $version);
 
-        $this->add(new PatchUpCommand());
-        $this->add(new MajorUpCommand());
+        $this->add(new RawRunCommand());
     }
 
     /**

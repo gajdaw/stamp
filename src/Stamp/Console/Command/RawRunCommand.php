@@ -8,13 +8,13 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 
-class MajorUpCommand extends BaseCommand
+class RawRunCommand extends BaseCommand
 {
 
     protected function configure()
     {
         $this
-            ->setName('major:up')
+            ->setName('raw:run')
             ->setDescription('The command to increase patch number by 1.')
             ->addOption(
                 'dry-run',
@@ -36,7 +36,7 @@ class MajorUpCommand extends BaseCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $dry_run = $this->getDefaultValue($input, 'dry-run');
+        $dryRun = $this->getDefaultValue($input, 'dry-run');
         $verbose = $this->getDefaultValue($input, 'verbose');
 
         $container = $this->getApplication()->getContainer();
@@ -46,6 +46,7 @@ class MajorUpCommand extends BaseCommand
             $executor = $container->get('stamp.actions.' . $action['name']);
             $executor->setParams($action['parameters']);
             $executor->setVerbose($verbose);
+            $executor->setDryRun($dryRun);
             $executor->exec();
             if ($verbose) {
                 $output->writeln($executor->getOutput());
