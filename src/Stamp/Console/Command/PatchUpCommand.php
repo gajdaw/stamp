@@ -48,7 +48,7 @@ class PatchUpCommand extends BaseCommand
             $executor->setVerbose($verbose);
             $executor->exec();
             if ($verbose) {
-                $output->write($executor->getOutput());
+                $output->writeln($executor->getOutput());
             }
             if (!$dry_run) {
                 //perform operation
