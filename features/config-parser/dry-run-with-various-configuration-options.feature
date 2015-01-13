@@ -4,19 +4,18 @@ Feature: Developer runs patch:up command in dry-run mode
   for various configuration files.
 
   Scenario: Parsing variables
-    Given the file ".stamper.yml" contains:
+    Given the file "stamp.yml" contains:
       """
       actions:
         -
-          name: parseVariables
-          parameters:
+          name: parseVariable
+          calls:
             -
-              name:     version
-              regex:    '/^  "version": "([^"]+)",$/'
+              regex:    '/^  "version": "(?P<version>[^"]+)",$/'
               filename: 'metadata.json'
             -
               name:     authorString
-              regex:    '/^  "([^"]+)": "gajdaw",$/'
+              regex:    '/^  "(?P<AUTHOR>[^"]+)": "gajdaw",$/'
               filename: 'metadata.json'
       """
     And the file "metadata.json" contains:
@@ -30,6 +29,6 @@ Feature: Developer runs patch:up command in dry-run mode
     When I run command "patch:up" in verbose dry mode
     Then the output should contain:
     """
-    - parseVariables
-    - variables[version=50.1021.173,authorString=author]
+    - parseVariable
+    - variables[version="50.1021.173",AUTHOR="author"]
     """

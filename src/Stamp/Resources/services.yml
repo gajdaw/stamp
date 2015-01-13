@@ -1,0 +1,4 @@
+services:
+    stamp.actions.parseVariable:
+        class: Stamp\Action\ParseVariable
+

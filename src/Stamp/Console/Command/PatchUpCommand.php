@@ -26,5 +26,7 @@ class PatchUpCommand extends BaseCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $container = $this->getApplication()->getContainer();
+        $config = $this->getApplication()->getConfig();
     }
 }
