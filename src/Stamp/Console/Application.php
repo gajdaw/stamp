@@ -14,17 +14,11 @@ use Stamp\Console\Command\PatchUpCommand;
 class Application extends BaseApplication
 {
     /**
-     * @var CommandRunner
-     */
-    private $commandRunner = null;
-
-    /**
      * @param string $version
      */
-    public function __construct($version = '0.1-dev', CommandRunner $commandRunner = null)
+    public function __construct($version = '0.1-dev')
     {
         parent::__construct('stamp', $version);
-        $this->commandRunner = $commandRunner;
 
         $this->add(new PatchUpCommand());
     }
