@@ -8,13 +8,13 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 
-class PatchUpCommand extends BaseCommand
+class MajorUpCommand extends BaseCommand
 {
 
     protected function configure()
     {
         $this
-            ->setName('patch:up')
+            ->setName('major:up')
             ->setDescription('The command to increase patch number by 1.')
             ->addOption(
                 'dry-run',

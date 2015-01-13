@@ -9,6 +9,11 @@ class MajorUp
     private $versionParser;
     private $variableContainer;
 
+    private $result;
+    private $output;
+    private $verbose = false;
+
+
     public function __construct(VersionParser $versionParser, VariableContainer $variableContainer)
     {
         $this->versionParser = $versionParser;
@@ -35,8 +40,32 @@ class MajorUp
             $parsed['minor'],
             $parsed['patch']
         );
+        if ($this->verbose) {
+            $this->output = sprintf(
+                'increase_major_version["%s"="%s"]',
+                $this->variable,
+                $increased
+            );
+        }
         $this->variableContainer->setVariable($this->variable, $increased);
         return true;
     }
+
+    public function getResult()
+    {
+        return $this->result;
+    }
+
+    public function getOutput()
+    {
+        return $this->output;
+    }
+
+    public function setVerbose($verbose)
+    {
+        $this->verbose = $verbose;
+    }
+
+
 
 }

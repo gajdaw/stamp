@@ -1,4 +1,16 @@
 services:
+    stamp.actions.version_parser:
+        class: Stamp\Action\VersionParser
+
+    stamp.actions.variable_container:
+        class: Stamp\Action\VariableContainer
+
+    stamp.actions.increase_major_version:
+        class: Stamp\Action\MajorUp
+        arguments:
+            - "@stamp.actions.version_parser"
+            - "@stamp.actions.variable_container"
+
     stamp.actions.file_reader:
         class: Stamp\Action\FileReader
 
@@ -10,5 +22,6 @@ services:
         arguments:
             - "@stamp.actions.file_reader"
             - "@stamp.actions.parse_variable"
+            - "@stamp.actions.variable_container"
 
 
