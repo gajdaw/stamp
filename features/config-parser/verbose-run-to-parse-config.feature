@@ -1,4 +1,4 @@
-Feature: Developer runs patch:up command in dry-run mode
+Feature: Developer runs patch:up command in verbose mode
   As a Developer
   I want to list what actions would have been executed
   for various configuration files.
@@ -21,7 +21,7 @@ Feature: Developer runs patch:up command in dry-run mode
         "author": "gajdaw"
       }
       """
-    When I run command "patch:up" in verbose dry mode
+    When I run command "patch:up" in verbose mode
     Then the output should contain:
     """
     parse_variable_from_file["filename"="metadata.json"]["version"="50.1021.173"]
@@ -50,7 +50,7 @@ Feature: Developer runs patch:up command in dry-run mode
         "author": "gajdaw"
       }
       """
-    When I run command "patch:up" in verbose dry mode
+    When I run command "patch:up" in verbose mode
     Then the output should contain:
     """
     parse_variable_from_file["filename"="metadata.json"]["version"="50.1021.173"]
