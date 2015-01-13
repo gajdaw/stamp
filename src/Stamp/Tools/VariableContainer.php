@@ -26,4 +26,9 @@ class VariableContainer
         }
         return $this->variables[$name];
     }
+
+    public function getVariables()
+    {
+        return $this->variables;
+    }
 }

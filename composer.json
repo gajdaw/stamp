@@ -15,7 +15,9 @@
 
     "require": {
         "php":            ">=5.3.3",
-        "symfony/console": "~2.6"
+        "symfony/console": "~2.6",
+        "symfony/process": "~2.6",
+        "twig/twig": "~1.0"
     },
 
     "require-dev": {

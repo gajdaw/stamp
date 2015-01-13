@@ -29,5 +29,16 @@ class VariableContainerSpec extends ObjectBehavior
             new \RuntimeException('Variable "abc" not found in the container.')
         )->duringGetVariable('abc');
     }
+    function it_should_return_all_variables()
+    {
+        $this->setVariable('a', 1);
+        $this->setVariable('b', 'l');
+        $this->setVariable('c', 'ipsum');
+        $this->getVariables()->shouldReturn(array(
+            'a' => 1,
+            'b' => 'l',
+            'c' => 'ipsum'
+        ));
+    }
 
 }
