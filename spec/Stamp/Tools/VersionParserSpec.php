@@ -1,6 +1,6 @@
 <?php
 
-namespace spec\Stamp\Action;
+namespace spec\Stamp\Tools;
 
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
@@ -9,7 +9,7 @@ class VersionParserSpec extends ObjectBehavior
 {
     function it_is_initializable()
     {
-        $this->shouldHaveType('Stamp\Action\VersionParser');
+        $this->shouldHaveType('Stamp\Tools\VersionParser');
     }
     function it_should_parse_version()
     {

@@ -4,9 +4,9 @@ namespace spec\Stamp\Action;
 
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
-use Stamp\Action\FileReader;
+use Stamp\Tools\FileReader;
 use Stamp\Action\ParseVariable;
-use Stamp\Action\VariableContainer;
+use Stamp\Tools\VariableContainer;
 
 class ParseVariableFromFileSpec extends ObjectBehavior
 {

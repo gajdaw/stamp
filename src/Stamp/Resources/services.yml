@@ -1,9 +1,9 @@
 services:
     stamp.actions.version_parser:
-        class: Stamp\Action\VersionParser
+        class: Stamp\Tools\VersionParser
 
     stamp.actions.variable_container:
-        class: Stamp\Action\VariableContainer
+        class: Stamp\Tools\VariableContainer
 
     stamp.actions.major_up:
         class: Stamp\Action\MajorUp
@@ -12,7 +12,7 @@ services:
             - "@stamp.actions.variable_container"
 
     stamp.actions.file_reader:
-        class: Stamp\Action\FileReader
+        class: Stamp\Tools\FileReader
 
     stamp.actions.parse_variable:
         class: Stamp\Action\ParseVariable

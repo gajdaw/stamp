@@ -2,6 +2,9 @@
 
 namespace Stamp\Action;
 
+use Stamp\Tools\VersionParser;
+use Stamp\Tools\VariableContainer;
+
 class MajorUp
 {
     private $variable;

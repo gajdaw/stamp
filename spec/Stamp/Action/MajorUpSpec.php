@@ -4,8 +4,8 @@ namespace spec\Stamp\Action;
 
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
-use Stamp\Action\VersionParser;
-use Stamp\Action\VariableContainer;
+use Stamp\Tools\VersionParser;
+use Stamp\Tools\VariableContainer;
 
 
 class MajorUpSpec extends ObjectBehavior

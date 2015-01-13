@@ -1,8 +1,9 @@
 <?php
 
 namespace Stamp\Action;
-use Stamp\Action\FileReader;
-use Stamp\Action\ParseVariable;
+
+use Stamp\Tools\FileReader;
+use Stamp\Tools\VariableContainer;
 
 class ParseVariableFromFile
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Stamp\Action;
+namespace Stamp\Tools;
 
 class VersionParser
 {

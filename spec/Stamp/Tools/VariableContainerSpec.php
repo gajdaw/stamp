@@ -1,6 +1,6 @@
 <?php
 
-namespace spec\Stamp\Action;
+namespace spec\Stamp\Tools;
 
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
@@ -9,7 +9,7 @@ class VariableContainerSpec extends ObjectBehavior
 {
     function it_is_initializable()
     {
-        $this->shouldHaveType('Stamp\Action\VariableContainer');
+        $this->shouldHaveType('Stamp\Tools\VariableContainer');
     }
     function it_should_store_var()
     {
