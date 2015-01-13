@@ -6,6 +6,7 @@ class ParseVariable
 {
     private $text = '';
     private $regex = '';
+    private $verbose = false;
 
     public function setText($text)
     {
@@ -22,6 +23,10 @@ class ParseVariable
         if (preg_match($this->regex, $this->text, $matches)) {
             unset($matches[0]);
             unset($matches[1]);
+            if ($this->verbose) {
+                $key = array_keys($matches)[0];
+                return sprintf('ParseVariable["%s"=>"%s"]', $key, $matches[$key]);
+            }
             return $matches;
         }
         return false;
@@ -31,5 +36,10 @@ class ParseVariable
     {
         $this->setText($array['text']);
         $this->setRegex($array['regex']);
+    }
+
+    public function setVerbose($verbose)
+    {
+        $this->verbose = $verbose;
     }
 }

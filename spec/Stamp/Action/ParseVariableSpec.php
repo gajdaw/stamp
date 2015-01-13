@@ -40,4 +40,15 @@ class ParseVariableSpec extends ObjectBehavior
         $this->exec()->shouldReturn(array('XyZ' => 'abc'));
     }
 
+    function it_should_parse_using_params_in_verbose_mode()
+    {
+        $params = array(
+            'text'  => '  "url"  :  "http://example.net" ',
+            'regex' => '/"url" *: *"(?P<url>[^"]+)"/'
+        );
+        $this->setParams($params);
+        $this->setVerbose(true);
+        $this->exec()->shouldReturn('ParseVariable["url"=>"http://example.net"]');
+    }
+
 }
