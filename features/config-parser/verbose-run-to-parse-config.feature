@@ -23,9 +23,9 @@ Feature: Developer runs patch:up command in verbose mode
       """
     When I run command "raw:run" in verbose mode
     Then the output should contain:
-    """
-    parse_variable_from_file["filename"="metadata.json"]["version"="50.1021.173"]
-    """
+      """
+      parse_variable_from_file["filename"="metadata.json"]["version"="50.1021.173"]
+      """
 
   Scenario: Parsing variables
     Given the file "stamp.yml" contains:
@@ -52,7 +52,7 @@ Feature: Developer runs patch:up command in verbose mode
       """
     When I run command "raw:run" in verbose mode
     Then the output should contain:
-    """
-    parse_variable_from_file["filename"="metadata.json"]["version"="50.1021.173"]
-    parse_variable_from_file["filename"="metadata.json"]["AUTHOR"="author"]
-    """
+      """
+      parse_variable_from_file["filename"="metadata.json"]["version"="50.1021.173"]
+      parse_variable_from_file["filename"="metadata.json"]["AUTHOR"="author"]
+      """
