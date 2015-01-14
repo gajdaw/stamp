@@ -57,11 +57,21 @@ class FilesystemContext implements Context, MatchersProviderInterface
     }
 
     /**
+     * @Then the file :file should contain:
+     */
+    public function theFileShouldContain($file, PyStringNode $contents)
+    {
+        expect($file)->toExist();
+        expect($file)->toHaveContents($contents);
+    }
+
+    /**
      * @return array
      */
     public function getMatchers()
     {
         return array(
+            new FileExistsMatcher(),
             new FileHasContentsMatcher()
         );
     }

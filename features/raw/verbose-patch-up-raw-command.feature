@@ -54,3 +54,9 @@ Feature: Developer runs actions to save variables in file
       command["git commit -m "Version 6.248.113""]
       command["git tag -a v6.248.113 -m "Release 6.248.113""]
       """
+    And the file "metadata.json" should contain:
+      """
+      {
+        "version": "6.248.113",
+      }
+      """
