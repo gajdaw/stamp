@@ -26,7 +26,6 @@ start with the configuration file named `stamp.yml`
 
     filename:    'metadata.json'
     regex:       '/"version": "(?P<version>[\d\.]+)",/'
-    variable:    'version'
     replacement: '"version": "{{ version }}",'
 
 The `filename` parameter sets the file to be searched for version.
@@ -35,13 +34,9 @@ The `regex` parameter sets the regular expression used to parse
 the file for version number. Please note that `?P<version>`
 sets the name of the variable to `version`.
 
-The `variable` parameter is the name of the variable that was
-created by regular expression `regex`.
-
 The `replacement` parameter is a Twig template for the
 string that represents the new version. This string
 will be stored in the file defined by `filename`.
-
 
 ## Running `stamp`
 
@@ -70,4 +65,19 @@ and sets the other number 0:
 
     1.2.3        =>  2.0.0
     77.234.654   =>  78.0.0
+
+## Credits
+
+Many concepts in this application, especially when it comes to
+testing, came from: https://github.com/phpspec/phpspec
+
+Great many thanks to [all contributors](https://github.com/phpspec/phpspec/graphs/contributors)!
+
+I used some of the files, like for example matchers in
+`features/bootstrap/Matcher/` folder, directly
+(i.e. without any modifications).
+
+In case of other fragments (e.g. `parseConfigurationFile`
+method in `Stamp\Console\Application`) I changed the
+code that I found in phpspec.
 
