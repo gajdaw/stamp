@@ -5,12 +5,12 @@ namespace spec\Stamp\Action;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
-class ParseVariableSpec extends ObjectBehavior
+class ParseVariableActionSpec extends ObjectBehavior
 {
 
     function it_is_initializable()
     {
-        $this->shouldHaveType('Stamp\Action\ParseVariable');
+        $this->shouldHaveType('Stamp\Action\ParseVariableAction');
     }
 
     function it_should_parse_a_variable()

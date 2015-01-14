@@ -2,7 +2,7 @@
 
 namespace Stamp\Action;
 
-class ParseVariable extends BaseAction implements ActionInterface
+class ParseVariableAction extends BaseAction implements ActionInterface
 {
     private $text = '';
     private $regex = '';

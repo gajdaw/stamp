@@ -5,7 +5,7 @@ namespace Stamp\Action;
 use Stamp\Tools\FileReader;
 use Stamp\Tools\VariableContainer;
 
-class ParseVariableFromFile extends BaseAction implements ActionInterface
+class ParseVariableFromFileAction extends BaseAction implements ActionInterface
 {
     private $filename;
     private $regex;
@@ -16,7 +16,7 @@ class ParseVariableFromFile extends BaseAction implements ActionInterface
     public function __construct(
         VariableContainer $variableContainer,
         FileReader $fileReader,
-        ParseVariable $variableParser
+        ParseVariableAction $variableParser
     ) {
         $this->variableContainer = $variableContainer;
         $this->fileReader = $fileReader;

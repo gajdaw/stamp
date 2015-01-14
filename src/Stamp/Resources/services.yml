@@ -6,19 +6,19 @@ services:
         class: Stamp\Tools\VariableContainer
 
     stamp.actions.major_up:
-        class: Stamp\Action\MajorUp
+        class: Stamp\Action\MajorUpAction
         arguments:
             - "@stamp.actions.variable_container"
             - "@stamp.actions.version_parser"
 
     stamp.actions.minor_up:
-        class: Stamp\Action\MinorUp
+        class: Stamp\Action\MinorUpAction
         arguments:
             - "@stamp.actions.variable_container"
             - "@stamp.actions.version_parser"
 
     stamp.actions.patch_up:
-        class: Stamp\Action\PatchUp
+        class: Stamp\Action\PatchUpAction
         arguments:
             - "@stamp.actions.variable_container"
             - "@stamp.actions.version_parser"
@@ -38,10 +38,10 @@ services:
         class: Stamp\Tools\FileReader
 
     stamp.actions.parse_variable:
-        class: Stamp\Action\ParseVariable
+        class: Stamp\Action\ParseVariableAction
 
     stamp.actions.parse_variable_from_file:
-        class: Stamp\Action\ParseVariableFromFile
+        class: Stamp\Action\ParseVariableFromFileAction
         arguments:
             - "@stamp.actions.variable_container"
             - "@stamp.actions.file_reader"

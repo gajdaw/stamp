@@ -8,7 +8,7 @@ use Stamp\Tools\VersionParser;
 use Stamp\Tools\VariableContainer;
 
 
-class MinorUpSpec extends ObjectBehavior
+class MinorUpActionSpec extends ObjectBehavior
 {
     function let(VariableContainer $variableContainer, VersionParser $versionParser)
     {
@@ -17,7 +17,7 @@ class MinorUpSpec extends ObjectBehavior
 
     function it_is_initializable()
     {
-        $this->shouldHaveType('Stamp\Action\MinorUp');
+        $this->shouldHaveType('Stamp\Action\MinorUpAction');
     }
     function it_should_parse_version(VariableContainer $variableContainer, VersionParser $versionParser)
     {

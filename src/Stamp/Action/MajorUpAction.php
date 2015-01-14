@@ -5,20 +5,20 @@ namespace Stamp\Action;
 use Stamp\Tools\VersionParser;
 use Stamp\Tools\VariableContainer;
 
-class PatchUp extends VersionUpAction implements ActionInterface
+class MajorUpAction extends VersionUpAction implements ActionInterface
 {
     public function getActionName()
     {
-        return 'patch_up';
+        return 'major_up';
     }
 
     public function increaseVersion()
     {
         $this->increased = sprintf(
             '%s.%s.%s',
-            $this->parsed['major'],
-            $this->parsed['minor'],
-            ++$this->parsed['patch']
+            ++$this->parsed['major'],
+            0,
+            0
         );
     }
 

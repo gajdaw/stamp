@@ -5,16 +5,16 @@ namespace spec\Stamp\Action;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Stamp\Tools\FileReader;
-use Stamp\Action\ParseVariable;
+use Stamp\Action\ParseVariableAction;
 use Stamp\Tools\VariableContainer;
 
-class ParseVariableFromFileSpec extends ObjectBehavior
+class ParseVariableFromFileActionSpec extends ObjectBehavior
 {
 
     function let(
         VariableContainer $variableContainer,
         FileReader $fileReader,
-        ParseVariable $variableParser
+        ParseVariableAction $variableParser
     ) {
         $this->beConstructedWith(
             $variableContainer,
@@ -25,10 +25,10 @@ class ParseVariableFromFileSpec extends ObjectBehavior
 
     function it_is_initializable()
     {
-        $this->shouldHaveType('Stamp\Action\ParseVariableFromFile');
+        $this->shouldHaveType('Stamp\Action\ParseVariableFromFileAction');
     }
 
-    function it_should_parse_a_variable_from_file_in_dry_run_mode(FileReader $fileReader, ParseVariable $variableParser)
+    function it_should_parse_a_variable_from_file_in_dry_run_mode(FileReader $fileReader, ParseVariableAction $variableParser)
     {
         $text = '
             "name"  :   "Lorem"
@@ -55,7 +55,7 @@ class ParseVariableFromFileSpec extends ObjectBehavior
     }
 
     function it_should_parse_a_variable_from_file_in_verbose_mode(
-        FileReader $fileReader, ParseVariable $variableParser,
+        FileReader $fileReader, ParseVariableAction $variableParser,
         VariableContainer $variableContainer
     ) {
         $text = '
@@ -84,7 +84,7 @@ class ParseVariableFromFileSpec extends ObjectBehavior
         $this->getOutput()->shouldReturn('parse_variable_from_file["filename"="f.json"]["name"="Lorem"]');
     }
 
-    function it_should_fail_when_variable_is_not_present(FileReader $fileReader, ParseVariable $variableParser)
+    function it_should_fail_when_variable_is_not_present(FileReader $fileReader, ParseVariableAction $variableParser)
     {
         $text = '...the text does not contain this variable...';
         $params = array(
