@@ -13,6 +13,7 @@ use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Stamp\Console\Command\RawRunCommand;
 use Stamp\Console\Command\PatchUpCommand;
 use Stamp\Console\Command\MinorUpCommand;
+use Stamp\Console\Command\MajorUpCommand;
 
 /**
  * The command line application entry point
@@ -33,6 +34,7 @@ class Application extends BaseApplication
         $this->add(new RawRunCommand());
         $this->add(new PatchUpCommand());
         $this->add(new MinorUpCommand());
+        $this->add(new MajorUpCommand());
     }
 
     /**
