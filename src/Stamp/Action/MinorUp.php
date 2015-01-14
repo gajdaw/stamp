@@ -36,7 +36,7 @@ class MinorUp extends BaseAction implements ActionInterface
             '%s.%s.%s',
             $parsed['major'],
             ++$parsed['minor'],
-            $parsed['patch']
+            0
         );
         if ($this->verbose) {
             $this->setOutput(sprintf(
