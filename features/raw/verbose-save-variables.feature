@@ -29,7 +29,7 @@ Feature: Developer runs actions to save variables in file
         "version": "6.248.112",
       }
       """
-    When I run command "raw:run" in verbose dry-run mode
+    When I run command "raw:run" in verbose mode
     Then the output should contain:
       """
       parse_variable_from_file["filename"="metadata.json"]["version"="6.248.112"]

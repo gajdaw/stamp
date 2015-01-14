@@ -25,7 +25,7 @@ Feature: Developer runs actions to increase version number
         "author": "gajdaw"
       }
       """
-    When I run command "raw:run" in verbose dry-run mode
+    When I run command "raw:run" in verbose mode
     Then the output should contain:
       """
       parse_variable_from_file["filename"="metadata.json"]["version"="50.1021.173"]
@@ -51,7 +51,7 @@ Feature: Developer runs actions to increase version number
       """
           "ver": "33.44.234",
       """
-    When I run command "raw:run" in verbose dry-run mode
+    When I run command "raw:run" in verbose mode
     Then the output should contain:
       """
       parse_variable_from_file["filename"="metadata.json"]["ver"="33.44.234"]
@@ -77,7 +77,7 @@ Feature: Developer runs actions to increase version number
       """
           Version --- 533.344.11234
       """
-    When I run command "raw:run" in verbose dry-run mode
+    When I run command "raw:run" in verbose mode
     Then the output should contain:
       """
       parse_variable_from_file["filename"="metadata.json"]["V"="533.344.11234"]
