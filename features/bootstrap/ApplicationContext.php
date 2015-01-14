@@ -42,6 +42,18 @@ class ApplicationContext implements Context, MatchersProviderInterface, SnippetA
     }
 
     /**
+     * @When I run command :command
+     */
+    public function iRunCommand($command = null)
+    {
+        $arguments = array (
+            'command' => $command
+        );
+
+        $this->lastExitCode = $this->tester->run($arguments);
+    }
+
+    /**
      * @When I run command :command in verbose mode
      */
     public function iRunCommandInVerboseMode($command = null)

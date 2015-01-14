@@ -14,6 +14,7 @@ use Stamp\Console\Command\RawRunCommand;
 use Stamp\Console\Command\PatchUpCommand;
 use Stamp\Console\Command\MinorUpCommand;
 use Stamp\Console\Command\MajorUpCommand;
+use RuntimeException;
 
 /**
  * The command line application entry point
@@ -63,31 +64,22 @@ class Application extends BaseApplication
      */
     protected function parseConfigurationFile(InputInterface $input)
     {
-        $paths = array('stamp.yml','stamp.yml.dist');
+        $paths = array('stamp.yml', 'stamp.yml.dist');
 
-        if ($customPath = $input->getParameterOption(array('-c','--config'))) {
+        if ($customPath = $input->getParameterOption(array('-c', '--config'))) {
             if (!file_exists($customPath)) {
-                throw new RuntimeException('Custom configuration file not found at '.$customPath);
+                throw new RuntimeException('Custom configuration file not found at ' . $customPath);
             }
             $paths = array($customPath);
         }
 
-        $config = array();
         foreach ($paths as $path) {
             if ($path && file_exists($path) && $parsedConfig = Yaml::parse(file_get_contents($path))) {
-                $config = $parsedConfig;
-                break;
+                return $parsedConfig;
             }
         }
 
-        if ($homeFolder = getenv('HOME')) {
-            $localPath = $homeFolder.'/.stamp.yml';
-            if (file_exists($localPath) && $parsedConfig = Yaml::parse(file_get_contents($localPath))) {
-                $config = array_replace_recursive($parsedConfig, $config);
-            }
-        }
-
-        return $config;
+        throw new RuntimeException('Configuration file not found!');
     }
 
     /**
