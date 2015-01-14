@@ -29,7 +29,7 @@ Feature: Developer runs actions to increase version number
     Then the output should contain:
       """
       parse_variable_from_file["filename"="metadata.json"]["version"="50.1021.173"]
-      major_up["version"="51.1021.173"]
+      major_up["version"="51.0.0"]
       """
 
   Scenario: Increasing minor version
@@ -55,7 +55,7 @@ Feature: Developer runs actions to increase version number
     Then the output should contain:
       """
       parse_variable_from_file["filename"="metadata.json"]["ver"="33.44.234"]
-      minor_up["ver"="33.45.234"]
+      minor_up["ver"="33.45.0"]
       """
 
   Scenario: Increasing patch version
