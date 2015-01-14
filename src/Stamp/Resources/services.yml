@@ -23,6 +23,17 @@ services:
             - "@stamp.actions.variable_container"
             - "@stamp.actions.version_parser"
 
+    stamp.actions.command:
+        class: Stamp\Action\CommandAction
+        arguments:
+            - "@stamp.actions.variable_container"
+            - "@stamp.process"
+
+    stamp.process:
+        class: Symfony\Component\Process\Process
+        arguments:
+            - ""
+
     stamp.actions.file_reader:
         class: Stamp\Tools\FileReader
 
