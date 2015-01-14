@@ -95,3 +95,17 @@ Feature: Developer runs commands with incorrect configuration
       """
     When I run command "patch:up"
     Then I should see 'Regex "/a/" does not contain any named subpatterns!'
+
+  Scenario: Running patch:up when regex contains too many named subpatterns
+    Given the file "stamp.yml" contains:
+      """
+      filename:    one
+      regex:       '/(?P<name>John) (?P<surname>Doe)/'
+      replacement: three
+      """
+    And the file "one" contains:
+      """
+      John Doe
+      """
+    When I run command "patch:up"
+    Then I should see 'Regex "/(?P<name>John) (?P<surname>Doe)/" - to many subpatterns!'

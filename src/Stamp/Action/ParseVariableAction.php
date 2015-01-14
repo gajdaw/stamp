@@ -39,11 +39,24 @@ class ParseVariableAction extends BaseAction implements ActionInterface
         }
 
         if (!$resultOfMatching) {
-            throw new RuntimeException(sprintf('Regex "%s" does not match!', $this->regex));
+            throw new RuntimeException(sprintf(
+                'Regex "%s" does not match!',
+                $this->regex
+            ));
         }
 
         if (count($matches) < 3) {
-            throw new RuntimeException(sprintf('Regex "%s" does not contain any named subpatterns!', $this->regex));
+            throw new RuntimeException(sprintf(
+                'Regex "%s" does not contain any named subpatterns!',
+                $this->regex
+            ));
+        }
+
+        if (count($matches) > 3) {
+            throw new RuntimeException(sprintf(
+                'Regex "%s" - to many subpatterns!',
+                $this->regex
+            ));
         }
 
         unset($matches[0]);
