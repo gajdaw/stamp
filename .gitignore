@@ -1,4 +1,5 @@
-/bin/
+/bin/behat
+/bin/phpspec
 /vendor/
 /tmp/
 /.idea/
