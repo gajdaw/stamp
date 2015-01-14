@@ -45,4 +45,26 @@ class CommandActionSpec extends ObjectBehavior
         $this->getOutput()->shouldReturn('command["echo "Version 9.8.7""]');
     }
 
+    function it_should_not_run_command_in_dry_mode(
+        VariableContainer $variableContainer,
+        Process $process
+    ) {
+        $params = array(
+            'commandTemplate' => 'echo "Hello, {{ subjectOfGreeting }}"',
+        );
+        $variableContainer->getVariables()->willReturn(array('subjectOfGreeting' => 'WORLD'));
+        $process->setCommandLine('echo "Hello, WORLD"')->shouldNotBeCalled();
+        $process->disableOutput()->shouldNotBeCalled();
+        $process->run()->shouldNotBeCalled();
+        $process->getExitCode()->shouldNotBeCalled();
+
+        $this->setParams($params);
+        $this->setVerbose(true);
+        $this->setDryRun(true);
+
+        $this->exec()->shouldReturn(true);
+        $this->getResult()->shouldReturn(null);
+        $this->getOutput()->shouldReturn('command["echo "Hello, WORLD""]');
+    }
+
 }
