@@ -7,7 +7,7 @@ Feature: Developer runs commands with incorrect configuration
     When I run command "patch:up"
     Then I should see "Configuration file not found!"
 
-  Scenario: Running patch:up with incorrect config
+  Scenario: Running patch:up with incorrect config file that doesnt parse
     Given the file "stamp.yml" contains:
       """
       a  b c: def
@@ -16,3 +16,30 @@ Feature: Developer runs commands with incorrect configuration
       """
     When I run command "patch:up"
     Then I should see 'Unable to parse at line 2 (near "  fdsa").'
+
+  Scenario: Running patch:up with config without mandatory filename
+    Given the file "stamp.yml" contains:
+      """
+      regex:       one
+      replacement: two
+      """
+    When I run command "patch:up"
+    Then I should see 'Cannot find "filename" entry in config file!'
+
+  Scenario: Running patch:up with config without mandatory regex
+    Given the file "stamp.yml" contains:
+      """
+      filename:    three
+      replacement: two
+      """
+    When I run command "patch:up"
+    Then I should see 'Cannot find "regex" entry in config file!'
+
+  Scenario: Running patch:up with config without mandatory replacement
+    Given the file "stamp.yml" contains:
+      """
+      filename: three
+      regex:    two
+      """
+    When I run command "patch:up"
+    Then I should see 'Cannot find "replacement" entry in config file!'

@@ -7,6 +7,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
+use RuntimeException;
 
 abstract class BaseIncreaseVersionCommand extends BaseCommand
 {
@@ -14,6 +15,20 @@ abstract class BaseIncreaseVersionCommand extends BaseCommand
     protected $container;
     protected $verbose;
     protected $dry_run;
+
+    public function validateConfig()
+    {
+        $keys = array_keys($this->config);
+        if (!in_array('filename', $keys)) {
+            throw new RuntimeException('Cannot find "filename" entry in config file!');
+        }
+        if (!in_array('regex', $keys)) {
+            throw new RuntimeException('Cannot find "regex" entry in config file!');
+        }
+        if (!in_array('replacement', $keys)) {
+            throw new RuntimeException('Cannot find "replacement" entry in config file!');
+        }
+    }
 
     public function addGenericOptions()
     {
@@ -108,6 +123,8 @@ abstract class BaseIncreaseVersionCommand extends BaseCommand
 
         $this->container = $this->getApplication()->getContainer();
         $this->config = $this->getApplication()->getConfig();
+
+        $this->validateConfig();
 
         $this->runActions($this->getPreActions(), $output);
         $this->autoSetVariable();
