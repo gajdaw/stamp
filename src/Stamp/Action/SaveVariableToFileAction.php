@@ -25,6 +25,11 @@ class SaveVariableToFileAction extends BaseAction implements ActionInterface
         $this->fileReader = $fileReader;
     }
 
+    public function getActionName()
+    {
+        return 'save_variable_to_file';
+    }
+
     public function setFilename($filename)
     {
         $this->filename = $filename;

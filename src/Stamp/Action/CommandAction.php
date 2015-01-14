@@ -20,6 +20,11 @@ class CommandAction extends BaseAction implements ActionInterface
         $this->process = $process;
     }
 
+    public function getActionName()
+    {
+        return 'command';
+    }
+
     public function setParams($array)
     {
         $this->setCommand($array['commandTemplate']);

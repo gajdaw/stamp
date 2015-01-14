@@ -2,7 +2,7 @@ Feature: Developer runs actions to save variables in file
   As a Developer
   I want to save variables in files
 
-  Scenario: Saving version
+  Scenario: Saving version after PatchUp action
     Given the file "stamp.yml" contains:
       """
       actions:

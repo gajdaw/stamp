@@ -7,6 +7,11 @@ class ParseVariable extends BaseAction implements ActionInterface
     private $text = '';
     private $regex = '';
 
+    public function getActionName()
+    {
+        return 'parse_variable';
+    }
+
     public function setParams($array)
     {
         $this->setText($array['text']);

@@ -2,12 +2,14 @@
 
 namespace Stamp\Action;
 
-class BaseAction
+abstract class BaseAction
 {
     protected $result;
     protected $output;
     protected $verbose = false;
     protected $dryRun = false;
+
+    abstract function getActionName();
 
     public function getResult()
     {

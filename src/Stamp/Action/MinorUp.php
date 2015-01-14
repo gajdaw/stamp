@@ -5,48 +5,22 @@ namespace Stamp\Action;
 use Stamp\Tools\VersionParser;
 use Stamp\Tools\VariableContainer;
 
-class MinorUp extends BaseAction implements ActionInterface
+class MinorUp extends VersionUpAction implements ActionInterface
 {
-    private $variable;
-
-    private $versionParser;
-    private $variableContainer;
-
-    public function __construct(VariableContainer $variableContainer, VersionParser $versionParser)
+    public function getActionName()
     {
-        $this->variableContainer = $variableContainer;
-        $this->versionParser = $versionParser;
+        return 'minor_up';
     }
 
-    public function setParams($array)
+    public function increaseVersion()
     {
-        $this->setVariable($array['variable']);
-    }
-
-    public function setVariable($variable)
-    {
-        $this->variable = $variable;
-    }
-
-    public function exec()
-    {
-        $var = $this->variableContainer->getVariable($this->variable);
-        $parsed = $this->versionParser->parse($var);
-        $increased = sprintf(
+        $this->increased = sprintf(
             '%s.%s.%s',
-            $parsed['major'],
-            ++$parsed['minor'],
+            $this->parsed['major'],
+            ++$this->parsed['minor'],
             0
         );
-        if ($this->verbose) {
-            $this->setOutput(sprintf(
-                'minor_up["%s"="%s"]',
-                $this->variable,
-                $increased
-            ));
-        }
-        $this->variableContainer->setVariable($this->variable, $increased);
-        return true;
     }
 
 }
+

@@ -23,6 +23,11 @@ class ParseVariableFromFile extends BaseAction implements ActionInterface
         $this->variableParser = $variableParser;
     }
 
+    public function getActionName()
+    {
+        return 'parse_variable_from_file';
+    }
+
     public function setFilename($filename)
     {
         $this->filename = $filename;
