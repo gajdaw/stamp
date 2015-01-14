@@ -47,4 +47,10 @@ services:
             - "@stamp.actions.file_reader"
             - "@stamp.actions.parse_variable"
 
+    stamp.actions.save_variable_to_file:
+        class: Stamp\Action\SaveVariableToFileAction
+        arguments:
+            - "@stamp.actions.variable_container"
+            - "@stamp.actions.file_reader"
+
 

@@ -21,7 +21,7 @@ Feature: Developer runs actions to save variables in file
             filename: 'metadata.json'
             variable: 'version'
             src:      '/"version" *: *"(?P<version>[^"]+)"/'
-            dest:     '/"version": "{{ version }}"/'
+            dest:     '"version": "{{ version }}"'
       """
     And the file "metadata.json" contains:
       """
@@ -34,5 +34,5 @@ Feature: Developer runs actions to save variables in file
       """
       parse_variable_from_file["filename"="metadata.json"]["version"="6.248.112"]
       patch_up["version"="6.248.113"]
-      save_variable_to_file["filename"="metadata.json"]["version"="6.248.113"]
+      save_variable_to_file["version": "6.248.113"]
       """
