@@ -28,18 +28,6 @@ class ParseVariableActionSpec extends ObjectBehavior
         $this->getOutput()->shouldReturn(null);
     }
 
-    function it_should_fail_when_var_is_not_found()
-    {
-        $params = array(
-            'text' => '...lorem ipsum...',
-            'regex' => '/"xyz": *"(?P<XyZ>[^"]+)"/'
-        );
-        $this->setParams($params);
-        $this->exec()->shouldReturn(false);
-        $this->getResult()->shouldReturn(null);
-        $this->getOutput()->shouldReturn(null);
-    }
-
     function it_should_parse_using_params()
     {
         $params = array(
@@ -82,11 +70,37 @@ class ParseVariableActionSpec extends ObjectBehavior
         )))->duringExec();
     }
 
+    function it_should_throw_an_exception_when_not_match()
+    {
+        $params = array(
+            'text'  => 'def',
+            'regex' => '/abc/'
+        );
+        $this->setParams($params);
+        $this->shouldThrow(new \RuntimeException(sprintf(
+            'Regex "%s" does not match!',
+            $params['regex']
+        )))->duringExec();
+    }
+
     function it_should_throw_an_exception_for_regex_without_named_subpatterns()
     {
         $params = array(
-            'text'  => '  "url"  :  "http://example.net" ',
-            'regex' => '/url/'
+            'text'  => 'abc',
+            'regex' => '/abc/'
+        );
+        $this->setParams($params);
+        $this->shouldThrow(new \RuntimeException(sprintf(
+            'Regex "%s" does not contain any named subpatterns!',
+            $params['regex']
+        )))->duringExec();
+    }
+
+    function it_should_throw_an_exception_for_regex_without_named_subpatterns2()
+    {
+        $params = array(
+            'text'  => 'abc',
+            'regex' => '/(a)bc/'
         );
         $this->setParams($params);
         $this->shouldThrow(new \RuntimeException(sprintf(

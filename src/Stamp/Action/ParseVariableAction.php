@@ -39,28 +39,24 @@ class ParseVariableAction extends BaseAction implements ActionInterface
         }
 
         if (!$resultOfMatching) {
-            return false;
+            throw new RuntimeException(sprintf('Regex "%s" does not match!', $this->regex));
         }
 
         if (count($matches) < 3) {
             throw new RuntimeException(sprintf('Regex "%s" does not contain any named subpatterns!', $this->regex));
         }
 
-        if ($resultOfMatching) {
+        unset($matches[0]);
+        unset($matches[1]);
 
-            unset($matches[0]);
-            unset($matches[1]);
-
-            if ($this->verbose) {
-                $key = array_keys($matches)[0];
-                $this->setOutput(sprintf('parse_variable["%s"=>"%s"]', $key, $matches[$key]));
-            }
-
-            $this->setResult($matches);
-
-            return true;
+        if ($this->verbose) {
+            $key = array_keys($matches)[0];
+            $this->setOutput(sprintf('parse_variable["%s"=>"%s"]', $key, $matches[$key]));
         }
-        return false;
+
+        $this->setResult($matches);
+
+        return true;
     }
 
 }
