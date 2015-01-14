@@ -19,7 +19,7 @@ class RawRunCommand extends BaseCommand
             ->addOption(
                 'dry-run',
                 null,
-                InputOption::VALUE_OPTIONAL,
+                InputOption::VALUE_NONE,
                 'Should the command run in dry mode?'
             );
     }

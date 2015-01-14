@@ -15,6 +15,17 @@ abstract class BaseIncreaseVersionCommand extends BaseCommand
     protected $verbose;
     protected $dry_run;
 
+    public function addGenericOptions()
+    {
+        $this
+            ->addOption(
+                'dry-run',
+                null,
+                InputOption::VALUE_NONE,
+                'Should the command run in dry mode?'
+            );
+    }
+
     public function getDefaultValue(InputInterface $input, $name, $default = false)
     {
         $result = $default;

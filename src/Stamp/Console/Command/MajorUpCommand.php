@@ -15,13 +15,9 @@ class MajorUpCommand extends BaseIncreaseVersionCommand
     {
         $this
             ->setName('major:up')
-            ->setDescription('The command to increase a patch number.')
-            ->addOption(
-                'dry-run',
-                null,
-                InputOption::VALUE_NONE,
-                'Should the command run in dry mode?'
-            );
+            ->setDescription('The command to increase a patch number.');
+
+        $this->addGenericOptions();
     }
 
     protected function getActions()
