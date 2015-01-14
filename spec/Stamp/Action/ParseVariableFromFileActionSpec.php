@@ -84,9 +84,9 @@ class ParseVariableFromFileActionSpec extends ObjectBehavior
         $this->getOutput()->shouldReturn('parse_variable_from_file["filename"="f.json"]["name"="Lorem"]');
     }
 
-    function it_should_fail_when_variable_is_not_present(FileReader $fileReader, ParseVariableAction $variableParser)
+    function it_should_repeat_exception_from_variable_parser(FileReader $fileReader, ParseVariableAction $variableParser)
     {
-        $text = '...the text does not contain this variable...';
+        $text = '...the 123 text does not contain this variable...';
         $params = array(
             'filename' => 'f.json',
             'regex' => '/(?P<name>[\d]+)/'
@@ -105,16 +105,36 @@ class ParseVariableFromFileActionSpec extends ObjectBehavior
 
         $this->setParams($params);
         $this->setVerbose(true);
-        //$this->exec()->shouldReturn(false);
 
         $this->shouldThrow(new \RuntimeException(sprintf(
-            'Regex "%s" does not match anything in the file "%s"!',
+            'Abc...'
+        )))->duringExec();
+    }
+
+    function it_should_except_when_regex_doesnt_match_file(FileReader $fileReader, ParseVariableAction $variableParser)
+    {
+        $text = 'abc';
+        $params = array(
+            'filename' => 'f.json',
+            'regex' => '/def/'
+        );
+
+        $fileReader->fileGetContents($params['filename'])->willReturn($text);
+
+        $variableParser->exec()->willReturn(false);
+        $variableParser->setParams(array(
+            'text' => $text,
+            'regex' => $params['regex']
+        ))->shouldBeCalled();
+
+
+        $this->setParams($params);
+        $this->setVerbose(true);
+
+        $this->shouldThrow(new \RuntimeException(sprintf(
+            'Regex "%s" doesnt match anything in the file "%s"!',
             $params['regex'],
             $params['filename']
         )))->duringExec();
-//
-//
-//        $this->getResult()->shouldReturn(null);
-//        $this->getOutput()->shouldReturn('parse_variable_from_file["filename"="f.json"]');
     }
 }

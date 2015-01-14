@@ -53,18 +53,17 @@ class ParseVariableFromFileAction extends BaseAction implements ActionInterface
             'regex' => $this->regex
         ));
 
-        try {
-            $resultToBeReturned = $this->variableParser->exec();
-        } catch (\RuntimeException $e) {
-            throw new RuntimeException(sprintf(
-                'Regex "%s" does not match anything in the file "%s"!',
-                $this->regex,
-                $this->filename
-            ));
-        }
+        $resultToBeReturned = $this->variableParser->exec();
+
         if (!$resultToBeReturned) {
             $this->setOutput(sprintf(
                 'parse_variable_from_file["filename"="%s"]',
+                $this->filename
+            ));
+
+            throw new RuntimeException(sprintf(
+                'Regex "%s" doesnt match anything in the file "%s"!',
+                $this->regex,
                 $this->filename
             ));
 
