@@ -19,7 +19,7 @@ class PatchUpCommand extends BaseIncreaseVersionCommand
             ->addOption(
                 'dry-run',
                 null,
-                InputOption::VALUE_OPTIONAL,
+                InputOption::VALUE_NONE,
                 'Should the command run in dry mode?'
             );
     }
