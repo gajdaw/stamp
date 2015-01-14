@@ -2,6 +2,8 @@
 
 namespace Stamp\Action;
 
+use RuntimeException;
+
 class ParseVariableAction extends BaseAction implements ActionInterface
 {
     private $text = '';
@@ -32,8 +34,8 @@ class ParseVariableAction extends BaseAction implements ActionInterface
     {
         try {
             $resultOfMatching = preg_match($this->regex, $this->text, $matches);
-        } catch (\PhpSpec\Exception\Example\ErrorException $e) {
-            throw new \RuntimeException(sprintf('Error during parsing regex [[%s]]', $this->regex));
+        } catch (\Exception $e) {
+            throw new RuntimeException(sprintf('Error during parsing regex [[%s]]', $this->regex));
         }
 
         if ($resultOfMatching) {
