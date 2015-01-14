@@ -5,7 +5,4 @@ Feature: Developer runs commands with incorrect configuration
 
   Scenario: Running patch:up without config in verbose mode
     When I run command "patch:up" in verbose mode
-    Then the output should contain:
-      """
-      Configuration file not found!
-      """
+    Then I should see "Configuration file not found!"
