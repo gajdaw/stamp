@@ -22,7 +22,7 @@ Feature: Developer runs actions that result in shell commands
       """
           [Lorem ipsum]
       """
-    When I run command "raw:run" in verbose mode
+    When I run command "raw:run" in verbose dry-run mode
     Then the output should contain:
       """
       parse_variable_from_file["filename"="metadata.json"]["title"="Lorem ipsum"]

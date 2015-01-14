@@ -42,7 +42,7 @@ class ApplicationContext implements Context, MatchersProviderInterface, SnippetA
     }
 
     /**
-     * @When I run command :command in verbose mode
+     * @When I run command :command in verbose dry-run mode
      */
     public function iRunCommandInVerboseMode($command = null)
     {
@@ -51,6 +51,7 @@ class ApplicationContext implements Context, MatchersProviderInterface, SnippetA
         );
 
         $this->addOptionToArguments('verbose', $arguments);
+        $this->addOptionToArguments('dry-run', $arguments);
 
         $this->lastExitCode = $this->tester->run($arguments);
     }

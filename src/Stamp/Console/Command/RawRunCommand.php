@@ -15,7 +15,7 @@ class RawRunCommand extends BaseCommand
     {
         $this
             ->setName('raw:run')
-            ->setDescription('The command to increase patch number by 1.')
+            ->setDescription('The command to execute raw steps.')
             ->addOption(
                 'dry-run',
                 null,
