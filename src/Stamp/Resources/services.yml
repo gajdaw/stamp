@@ -11,6 +11,12 @@ services:
             - "@stamp.actions.variable_container"
             - "@stamp.actions.version_parser"
 
+    stamp.actions.minor_up:
+        class: Stamp\Action\MinorUp
+        arguments:
+            - "@stamp.actions.variable_container"
+            - "@stamp.actions.version_parser"
+
     stamp.actions.file_reader:
         class: Stamp\Tools\FileReader
 
