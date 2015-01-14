@@ -35,6 +35,13 @@ abstract class BaseIncreaseVersionCommand extends BaseCommand
                 $this->config['filename']
             ));
         }
+
+        try {
+            $resultOfMatching = preg_match($this->config['regex'], 'some text');
+        } catch (\Exception $e) {
+            throw new \RuntimeException(sprintf('Error during parsing regex "%s" from config file!', $this->config['regex']));
+        }
+
     }
 
     public function addGenericOptions()
