@@ -31,4 +31,10 @@ class VariableContainer
     {
         return $this->variables;
     }
+
+    public function getFirstVariableName()
+    {
+        $names = array_keys($this->variables);
+        return $names[0];
+    }
 }
