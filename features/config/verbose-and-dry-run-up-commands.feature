@@ -68,11 +68,11 @@ Feature: Developer runs commands with incorrect configuration
     When I run command "patch:up"
     Then I should see 'Error during parsing regex "/abc" from config file!'
 
-  Scenario: Running patch:up when regex doesnt contain any named subpatterns
+  Scenario: Running patch:up when regex doesnt match anything in the file
     Given the file "stamp.yml" contains:
       """
       filename:    one
-      regex:       '/abc/'
+      regex:       '/xyz/'
       replacement: three
       """
     And the file "one" contains:
@@ -80,4 +80,18 @@ Feature: Developer runs commands with incorrect configuration
       some content...
       """
     When I run command "patch:up"
-    Then I should see 'Regex "/abc/" does not match anything in the file "one"!'
+    Then I should see 'Regex "/xyz/" does not match!'
+
+  Scenario: Running patch:up when regex doesnt contain any named subpatterns
+    Given the file "stamp.yml" contains:
+      """
+      filename:    one
+      regex:       '/a/'
+      replacement: three
+      """
+    And the file "one" contains:
+      """
+      abc
+      """
+    When I run command "patch:up"
+    Then I should see 'Regex "/a/" does not contain any named subpatterns!'
