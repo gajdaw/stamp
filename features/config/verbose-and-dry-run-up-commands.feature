@@ -54,7 +54,7 @@ Feature: Developer runs commands with incorrect configuration
     When I run command "patch:up"
     Then I should see 'The file "one" does not exist!'
 
-  Scenario: Running patch:up when file regex in config is incorrect
+  Scenario: Running patch:up when regex in config is incorrect
     Given the file "stamp.yml" contains:
       """
       filename:    one
@@ -67,3 +67,17 @@ Feature: Developer runs commands with incorrect configuration
       """
     When I run command "patch:up"
     Then I should see 'Error during parsing regex "/abc" from config file!'
+
+  Scenario: Running patch:up when regex doesnt contain any named subpatterns
+    Given the file "stamp.yml" contains:
+      """
+      filename:    one
+      regex:       '/abc/'
+      replacement: three
+      """
+    And the file "one" contains:
+      """
+      some content...
+      """
+    When I run command "patch:up"
+    Then I should see 'Regex "/abc/" does not contain any named subpatterns!'
