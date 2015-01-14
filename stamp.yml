@@ -1,4 +1,3 @@
 filename:    'bin/stamp'
 regex:       "/define\('STAMP_VERSION', '(?P<version>[\d\.]+)'\);/"
-variable:    'version'
 replacement: "define('STAMP_VERSION', '{{ version }}');"
