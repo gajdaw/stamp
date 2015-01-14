@@ -43,3 +43,13 @@ Feature: Developer runs commands with incorrect configuration
       """
     When I run command "patch:up"
     Then I should see 'Cannot find "replacement" entry in config file!'
+
+  Scenario: Running patch:up when file defined in filename doesnt exist
+    Given the file "stamp.yml" contains:
+      """
+      filename:    one
+      regex:       two
+      replacement: three
+      """
+    When I run command "patch:up"
+    Then I should see 'The file "one" does not exist!'

@@ -28,6 +28,13 @@ abstract class BaseIncreaseVersionCommand extends BaseCommand
         if (!in_array('replacement', $keys)) {
             throw new RuntimeException('Cannot find "replacement" entry in config file!');
         }
+
+        if (!file_exists($this->config['filename'])) {
+            throw new RuntimeException(sprintf(
+                'The file "%s" does not exist!',
+                $this->config['filename']
+            ));
+        }
     }
 
     public function addGenericOptions()
