@@ -57,3 +57,29 @@ Feature: Developer runs actions to increase version number
     parse_variable_from_file["filename"="metadata.json"]["ver"="33.44.234"]
     minor_up["ver"="33.45.234"]
     """
+
+  Scenario: Increasing patch version
+    Given the file "stamp.yml" contains:
+      """
+      actions:
+        -
+          name: parse_variable_from_file
+          parameters:
+            regex:    '/Version --- (?P<V>[\d\.]+)/'
+            filename: 'metadata.json'
+        -
+          name: patch_up
+          parameters:
+            variable: 'V'
+
+      """
+    And the file "metadata.json" contains:
+      """
+          Version --- 533.344.11234
+      """
+    When I run command "raw:run" in verbose mode
+    Then the output should contain:
+    """
+    parse_variable_from_file["filename"="metadata.json"]["V"="533.344.11234"]
+    patch_up["V"="533.344.11235"]
+    """
