@@ -3,5 +3,6 @@
 /vendor/
 /tmp/
 /.idea/
+/stamp.phar
 
 
