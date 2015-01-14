@@ -8,7 +8,6 @@ Feature: Developer runs commands to increase a version
       """
       filename:    'metadata.json'
       regex:       '/"version" *: *"(?P<version>[^"]+)"/'
-      variable:    'version'
       replacement: '"version": "{{ version }}"'
       """
     And the file "metadata.json" contains:
@@ -39,7 +38,6 @@ Feature: Developer runs commands to increase a version
       """
       filename:    'metadata.json'
       regex:       '/"version" *: *"(?P<version>[^"]+)"/'
-      variable:    'version'
       replacement: '"version": "{{ version }}"'
       """
     And the file "metadata.json" contains:
@@ -70,7 +68,6 @@ Feature: Developer runs commands to increase a version
       """
       filename:    'metadata.json'
       regex:       '/"version" *: *"(?P<version>[^"]+)"/'
-      variable:    'version'
       replacement: '"version": "{{ version }}"'
       """
     And the file "metadata.json" contains:
@@ -101,7 +98,6 @@ Feature: Developer runs commands to increase a version
       """
       filename:    'metadata.json'
       regex:       '/"version" *: *"(?P<version>[^"]+)"/'
-      variable:    'version'
       replacement: '"version": "{{ version }}"'
       """
     And the file "metadata.json" contains:
@@ -132,7 +128,6 @@ Feature: Developer runs commands to increase a version
       """
       filename:    'metadata.json'
       regex:       '/"version" *: *"(?P<version>[^"]+)"/'
-      variable:    'version'
       replacement: '"version": "{{ version }}"'
       """
     And the file "metadata.json" contains:
@@ -163,7 +158,6 @@ Feature: Developer runs commands to increase a version
       """
       filename:    'metadata.json'
       regex:       '/"version" *: *"(?P<version>[^"]+)"/'
-      variable:    'version'
       replacement: '"version": "{{ version }}"'
       """
     And the file "metadata.json" contains:

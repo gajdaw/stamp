@@ -110,7 +110,14 @@ abstract class BaseIncreaseVersionCommand extends BaseCommand
         $this->config = $this->getApplication()->getConfig();
 
         $this->runActions($this->getPreActions(), $output);
+        $this->autoSetVariable();
         $this->runActions($this->getActions(), $output);
         $this->runActions($this->getPostActions(), $output);
+    }
+
+    public function autoSetVariable()
+    {
+        $variableContainer = $this->container->get('stamp.actions.variable_container');
+        $this->config['variable'] = $variableContainer->getFirstVariableName();
     }
 }
