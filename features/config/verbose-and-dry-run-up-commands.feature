@@ -80,4 +80,4 @@ Feature: Developer runs commands with incorrect configuration
       some content...
       """
     When I run command "patch:up"
-    Then I should see 'Regex "/abc/" does not contain any named subpatterns!'
+    Then I should see 'Regex "/abc/" does not match anything in the file "one"!'

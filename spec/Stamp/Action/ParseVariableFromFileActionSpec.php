@@ -89,12 +89,14 @@ class ParseVariableFromFileActionSpec extends ObjectBehavior
         $text = '...the text does not contain this variable...';
         $params = array(
             'filename' => 'f.json',
-            'regex' => '/"name" *: *"(?P<name>[^"]+)"/'
+            'regex' => '/(?P<name>[\d]+)/'
         );
 
         $fileReader->fileGetContents($params['filename'])->willReturn($text);
 
-        $variableParser->exec()->willReturn(false);
+        $variableParser->exec()->willThrow( new \RuntimeException(
+            'Abc...'
+        ));
         $variableParser->setParams(array(
             'text' => $text,
             'regex' => $params['regex']
@@ -103,8 +105,16 @@ class ParseVariableFromFileActionSpec extends ObjectBehavior
 
         $this->setParams($params);
         $this->setVerbose(true);
-        $this->exec()->shouldReturn(false);
-        $this->getResult()->shouldReturn(null);
-        $this->getOutput()->shouldReturn('parse_variable_from_file["filename"="f.json"]');
+        //$this->exec()->shouldReturn(false);
+
+        $this->shouldThrow(new \RuntimeException(sprintf(
+            'Regex "%s" does not match anything in the file "%s"!',
+            $params['regex'],
+            $params['filename']
+        )))->duringExec();
+//
+//
+//        $this->getResult()->shouldReturn(null);
+//        $this->getOutput()->shouldReturn('parse_variable_from_file["filename"="f.json"]');
     }
 }
