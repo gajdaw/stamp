@@ -35,8 +35,8 @@ class MajorUp extends BaseAction implements ActionInterface
         $increased = sprintf(
             '%s.%s.%s',
             ++$parsed['major'],
-            $parsed['minor'],
-            $parsed['patch']
+            0,
+            0
         );
         if ($this->verbose) {
             $this->setOutput(sprintf(

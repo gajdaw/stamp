@@ -24,7 +24,7 @@ class MajorUpSpec extends ObjectBehavior
         $tmpVersion = '3.421.55';
 
         $variableContainer->getVariable('version')->willReturn('3.421.55');
-        $variableContainer->setVariable('version', '4.421.55')->shouldBeCalled();
+        $variableContainer->setVariable('version', '4.0.0')->shouldBeCalled();
 
         $versionParser->parse($tmpVersion)->willReturn(array(
            'major' => '3', 'minor' => '421', 'patch' => '55'
@@ -36,6 +36,6 @@ class MajorUpSpec extends ObjectBehavior
         $this->setVerbose(true);
         $this->setParams($params);
         $this->exec()->shouldReturn(true);
-        $this->getOutput()->shouldReturn('major_up["version"="4.421.55"]');
+        $this->getOutput()->shouldReturn('major_up["version"="4.0.0"]');
     }
 }
