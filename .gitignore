@@ -4,5 +4,7 @@
 /tmp/
 /.idea/
 /stamp.phar
+/composer.lock
+
 
 
