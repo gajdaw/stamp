@@ -109,3 +109,17 @@ Feature: Developer runs commands with incorrect configuration
       """
     When I run command "patch:up"
     Then I should see 'Regex "/(?P<name>John) (?P<surname>Doe)/" - to many subpatterns!'
+
+  Scenario: Running patch:up when version does not match x.x.x
+    Given the file "stamp.yml" contains:
+      """
+      filename:    one
+      regex:       '/"version": "(?P<version>[\d\.]+)"/'
+      replacement: '"version": "{{ version }}"'
+      """
+    And the file "one" contains:
+      """
+      "version": "1"
+      """
+    When I run command "patch:up"
+    Then I should see 'Version "1" doesnt match x.x.x!'
