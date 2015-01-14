@@ -82,4 +82,17 @@ class ParseVariableActionSpec extends ObjectBehavior
         )))->duringExec();
     }
 
+    function it_should_throw_an_exception_for_regex_without_named_subpatterns()
+    {
+        $params = array(
+            'text'  => '  "url"  :  "http://example.net" ',
+            'regex' => '/url/'
+        );
+        $this->setParams($params);
+        $this->shouldThrow(new \RuntimeException(sprintf(
+            'Regex "%s" does not contain any named subpatterns!',
+            $params['regex']
+        )))->duringExec();
+    }
+
 }
