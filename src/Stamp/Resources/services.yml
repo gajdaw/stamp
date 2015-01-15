@@ -52,5 +52,3 @@ services:
         arguments:
             - "@stamp.actions.variable_container"
             - "@stamp.actions.file_reader"
-
-

@@ -9,7 +9,7 @@ abstract class BaseAction
     protected $verbose = false;
     protected $dryRun = false;
 
-    abstract function getActionName();
+    abstract public function getActionName();
 
     public function getResult()
     {

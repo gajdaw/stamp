@@ -53,7 +53,7 @@ class CommandAction extends BaseAction implements ActionInterface
             $this->process->run();
             //append Output?
             //$this->output .= $process->getOutput();
-            return !(boolean)$this->process->getExitCode();
+            return !(boolean) $this->process->getExitCode();
         }
 
         return true;

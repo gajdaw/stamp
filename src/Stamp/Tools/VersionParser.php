@@ -20,6 +20,7 @@ class VersionParser
         unset($matches[1]);
         unset($matches[2]);
         unset($matches[3]);
+
         return $matches;
     }
 }

@@ -2,9 +2,6 @@
 
 namespace Stamp\Action;
 
-use Stamp\Tools\VersionParser;
-use Stamp\Tools\VariableContainer;
-
 class MajorUpAction extends VersionUpAction implements ActionInterface
 {
     public function getActionName()

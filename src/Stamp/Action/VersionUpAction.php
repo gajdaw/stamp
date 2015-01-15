@@ -29,7 +29,7 @@ abstract class VersionUpAction extends BaseAction implements ActionInterface
         $this->variable = $variable;
     }
 
-    abstract function increaseVersion();
+    abstract public function increaseVersion();
 
     public function generateVerboseOutput()
     {
@@ -50,6 +50,7 @@ abstract class VersionUpAction extends BaseAction implements ActionInterface
         $this->increaseVersion();
         $this->generateVerboseOutput();
         $this->variableContainer->setVariable($this->variable, $this->increased);
+
         return true;
     }
 
