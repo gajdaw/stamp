@@ -3,7 +3,7 @@
     "description": "Versioning Tool",
     "keywords":    ["vcs", "git", "version", "tag", "commit"],
     "homepage":    "http://stamp.github.io/",
-    "type":        "library",
+    "type":        "project",
     "license":     "MIT",
     "authors":     [
         {
