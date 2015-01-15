@@ -18,7 +18,12 @@ abstract class BaseIncreaseVersionCommand extends BaseCommand
 
     public function validateConfig()
     {
+        if ($this->config === null) {
+            throw new RuntimeException('Configuration file not found!');
+        }
+
         $keys = array_keys($this->config);
+
         if (!in_array('filename', $keys)) {
             throw new RuntimeException('Cannot find "filename" entry in config file!');
         }

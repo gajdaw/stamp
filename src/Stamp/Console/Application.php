@@ -15,6 +15,7 @@ use Stamp\Console\Command\PatchUpCommand;
 use Stamp\Console\Command\MinorUpCommand;
 use Stamp\Console\Command\MajorUpCommand;
 use RuntimeException;
+use Stamp\Version;
 
 /**
  * The command line application entry point
@@ -28,9 +29,9 @@ class Application extends BaseApplication
     /**
      * @param string $version
      */
-    public function __construct($version = '0.1-dev')
+    public function __construct()
     {
-        parent::__construct('stamp', $version);
+        parent::__construct('stamp', Version::VERSION);
 
         $this->add(new RawRunCommand());
         $this->add(new PatchUpCommand());
@@ -79,7 +80,7 @@ class Application extends BaseApplication
             }
         }
 
-        throw new RuntimeException('Configuration file not found!');
+        return null;
     }
 
     /**

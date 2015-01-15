@@ -9,6 +9,7 @@ use Stamp\Console\Application;
 use Symfony\Component\Console\Tester\ApplicationTester;
 use PhpSpec\Matcher\MatchersProviderInterface;
 use Matcher\ApplicationOutputMatcher;
+use Matcher\ApplicationOutputRegexMatcher;
 
 
 /**
@@ -83,6 +84,18 @@ class ApplicationContext implements Context, MatchersProviderInterface, SnippetA
     }
 
     /**
+     * @When I run stamp with :option option
+     */
+    public function iRunStampWithOption($option)
+    {
+        $arguments = array ();
+
+        $this->addOptionToArguments($option, $arguments);
+
+        $this->lastExitCode = $this->tester->run($arguments);
+    }
+
+    /**
      * @param string $option
      * @param array $arguments
      */
@@ -106,6 +119,14 @@ class ApplicationContext implements Context, MatchersProviderInterface, SnippetA
     }
 
     /**
+     * @Then I should see text matching :regex
+     */
+    public function iShouldSeeTextMatching($regex)
+    {
+        expect($this->tester)->toHaveOutputMatching($regex);
+    }
+
+    /**
      * @Then the output should contain:
      */
     public function theOutputShouldContain(PyStringNode $output)
@@ -122,6 +143,7 @@ class ApplicationContext implements Context, MatchersProviderInterface, SnippetA
     {
         return array(
             new ApplicationOutputMatcher(),
+            new ApplicationOutputRegexMatcher(),
         );
     }
 

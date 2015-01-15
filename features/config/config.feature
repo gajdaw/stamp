@@ -3,6 +3,10 @@ Feature: Developer runs commands with incorrect configuration
   I want to be sure that nothing bad happens when there are
   problems with config files
 
+  Scenario: Running stamp with version option
+    When I run stamp with "version" option
+    Then I should see text matching "/stamp version \d+\.\d+\.\d+/"
+
   Scenario: Running patch:up without config
     When I run command "patch:up"
     Then I should see "Configuration file not found!"

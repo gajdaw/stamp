@@ -22,5 +22,5 @@ if (is_file($autoload = __DIR__ . '/../vendor/autoload.php')) {
     exit(1);
 }
 
-$app = new Stamp\Console\Application(STAMP_VERSION);
+$app = new Stamp\Console\Application();
 $app->run();
