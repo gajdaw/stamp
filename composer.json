@@ -1,7 +1,7 @@
 {
     "name":        "gajdaw/stamp",
-    "description": "Versioning Tool",
-    "keywords":    ["vcs", "git", "version", "tag", "commit"],
+    "description": "Versioning tool to bump version.",
+    "keywords":    ["vcs", "git", "version", "tag", "commit", "bump"],
     "homepage":    "http://github.com/gajdaw/stamp",
     "type":        "project",
     "license":     "MIT",
