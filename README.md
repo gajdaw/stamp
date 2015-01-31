@@ -97,7 +97,14 @@ and sets the other numbers to 0:
     $ bin/phpspec run
     $ bin/behat
 
-## 5. Credits
+## 5. How to build dev version?
+
+    git checkout master
+    git checkout -b build
+    stamp version:dev
+    ./build
+
+## 6. Credits
 
 Many concepts in this application, especially when it comes to
 testing, came from: https://github.com/phpspec/phpspec
