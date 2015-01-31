@@ -1,9 +1,9 @@
 STAMP
-====
+=====
 
 Application that makes versioning a little easier.
 
-## Example
+## 1. Example
 
 Suppose your application contains a file name `metadata.json` with
 the following contents:
@@ -14,15 +14,15 @@ the following contents:
       "author": "gajdaw"
     }
 
-To release a new version you probably should
+To release a new version you would probably:
 
-* increase the version in `metadata.json` to `0.1.5`
+* increase the version in `metadata.json` from `0.1.4` to `0.1.5`
 * commit the change setting the commit's message to `Version 0.1.5`
 * create an annotated tag `v0.1.5` with message `Release 0.1.5`
 
 To perform the above operations with `stamp` application
 start with the configuration file named `stamp.yml`
-(in project's root directory):
+(in your project's root directory):
 
     filename:    'metadata.json'
     regex:       '/"version": "(?P<version>[\d\.]+)",/'
@@ -38,9 +38,9 @@ The `replacement` parameter is a Twig template for the
 string that represents the new version. This string
 will be stored in the file defined by `filename`.
 
-## Running `stamp`
+## 2. Running `stamp`
 
-Since the project is not yet stable, I suggest using
+Since `stamp` is not yet stable, I suggest using
 `--dry-run` and `--verbose` options for start.
 
 Here is the list of available commands:
@@ -61,12 +61,12 @@ and sets the patch number to 0:
     77.234.654   =>  77.235.0
 
 The last command, `major:up` increases the first number
-and sets the other number 0:
+and sets the other numbers to 0:
 
     1.2.3        =>  2.0.0
     77.234.654   =>  78.0.0
 
-## Credits
+## 3. Credits
 
 Many concepts in this application, especially when it comes to
 testing, came from: https://github.com/phpspec/phpspec
