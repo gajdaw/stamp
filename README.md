@@ -1,6 +1,8 @@
 STAMP
 =====
 
+[![Build Status](https://travis-ci.org/gajdaw/stamp.svg?branch=master)](https://travis-ci.org/gajdaw/stamp)
+
 Application that makes versioning a little easier.
 
 ## 1. Example
