@@ -66,7 +66,17 @@ and sets the other numbers to 0:
     1.2.3        =>  2.0.0
     77.234.654   =>  78.0.0
 
-## 3. Credits
+## 3. Reading list
+
+* https://github.com/vojtajina/grunt-bump
+* https://github.com/maestrodev/puppet-blacksmith
+* http://opensource.apple.com/source/libarchive/libarchive-30/libarchive/build/bump-version.sh
+* http://stackoverflow.com/questions/4181185/what-does-bump-version-stands-for
+* https://gist.github.com/pete-otaqui/4188238
+* https://github.com/nvie/gitflow/blob/develop/bump-version
+* https://docs.npmjs.com/cli/version
+
+## 4. Credits
 
 Many concepts in this application, especially when it comes to
 testing, came from: https://github.com/phpspec/phpspec
