@@ -6,6 +6,8 @@ php:
 before_script:
   - composer self-update
   - composer install --no-interaction
+  - git config --global user.name travis
+  - git config --global user.email travis@example.net
   - sleep 5
 
 script:
