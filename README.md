@@ -76,7 +76,14 @@ and sets the other numbers to 0:
 * https://github.com/nvie/gitflow/blob/develop/bump-version
 * https://docs.npmjs.com/cli/version
 
-## 4. Credits
+## 4. How to run the tests?
+
+    $ vagrant up
+    $ composer update
+    $ bin/phpspec run
+    $ bin/behat
+
+## 5. Credits
 
 Many concepts in this application, especially when it comes to
 testing, came from: https://github.com/phpspec/phpspec
