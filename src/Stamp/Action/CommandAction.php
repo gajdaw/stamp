@@ -49,11 +49,16 @@ class CommandAction extends BaseAction implements ActionInterface
 
         if (!$this->dryRun) {
             $this->process->setCommandLine($command);
-            $this->process->disableOutput();
+            //$this->process->disableOutput();
             $this->process->run();
+            if ($this->process->getOutput()) {
+                return $this->process->getOutput();
+            } else {
+                return true;
+            }
             //append Output?
             //$this->output .= $process->getOutput();
-            return !(boolean) $this->process->getExitCode();
+            //return !(boolean) $this->process->getExitCode();
         }
 
         return true;

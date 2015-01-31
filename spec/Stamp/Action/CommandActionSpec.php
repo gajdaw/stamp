@@ -33,9 +33,8 @@ class CommandActionSpec extends ObjectBehavior
         );
         $variableContainer->getVariables()->willReturn(array('no' => '9.8.7'));
         $process->setCommandLine('echo "Version 9.8.7"')->shouldBeCalled();
-        $process->disableOutput()->shouldBeCalled();
         $process->run()->shouldBeCalled();
-        $process->getExitCode()->shouldBeCalled();
+        $process->getOutput()->shouldBeCalled();
 
         $this->setParams($params);
         $this->setVerbose(true);
