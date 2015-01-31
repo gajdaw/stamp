@@ -40,6 +40,18 @@ The `replacement` parameter is a Twig template for the
 string that represents the new version. This string
 will be stored in the file defined by `filename`.
 
+## 2. How to install?
+
+### 2.1. Manual download
+
+Download the latest release available at:
+
+    https://github.com/gajdaw/stamp/releases/download/v0.1.12/stamp.phar
+
+You can do this with:
+
+    wget -O /usr/local/bin/stamp http://github.com/gajdaw/stamp/releases/download/v0.1.12/stamp.phar
+
 ## 2. Running `stamp`
 
 Since `stamp` is not yet stable, I suggest using
