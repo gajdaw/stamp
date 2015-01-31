@@ -5,6 +5,6 @@
 /.idea/
 /stamp.phar
 /composer.lock
-
+/.vagrant/
 
 
