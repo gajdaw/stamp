@@ -6,15 +6,21 @@ use Behat\Gherkin\Node\PyStringNode;
 use Behat\Gherkin\Node\TableNode;
 use Matcher\FileExistsMatcher;
 use Matcher\FileHasContentsMatcher;
-use Matcher\FileHasContentsMatchingMatcher;
 use PhpSpec\Matcher\MatchersProviderInterface;
 use Symfony\Component\Filesystem\Filesystem;
+use GitElephant\Repository;
 
 /**
  * Defines application features from the specific context.
  */
-class FilesystemContext implements Context, MatchersProviderInterface
+class GitContext implements Context, MatchersProviderInterface
 {
+
+    /**
+     * @var Repository
+     */
+    private $repo;
+
     /**
      * @var string
      */
@@ -39,6 +45,7 @@ class FilesystemContext implements Context, MatchersProviderInterface
         $this->filesystem->remove($this->workingDirectory);
         $this->filesystem->mkdir($this->workingDirectory);
         chdir($this->workingDirectory);
+        $this->repo = new Repository($this->workingDirectory);
     }
 
     /**
@@ -49,30 +56,38 @@ class FilesystemContext implements Context, MatchersProviderInterface
         $this->filesystem->remove($this->workingDirectory);
     }
 
+
     /**
-     * @Given the file :file contains:
+     * @Given I initialize a repo
      */
-    public function theFileContains($file, PyStringNode $contents)
+    public function iInitializeARepo()
     {
-        $this->filesystem->dumpFile($file, (string)$contents);
+        $this->repo->init();
     }
 
     /**
-     * @Then the file :file should contain:
+     * @Given I commit :message
      */
-    public function theFileShouldContain($file, PyStringNode $contents)
+    public function iCommit($message)
     {
-        expect($file)->toExist();
-        expect($file)->toHaveContents($contents);
+        $this->repo->stage();
+        $this->repo->commit($message);
     }
 
     /**
-     * @Then the file :file should match :regex
+     * @Given I tag :tag with message :message
      */
-    public function theFileShouldMatch($file, $regex)
+    public function iTagWithMessage($tag, $message)
     {
-        expect($file)->toExist();
-        expect($file)->toHaveContentsMatching($regex);
+        $this->repo->createTag($tag, null, $message);
+    }
+
+    /**
+     * @Then the file :arg1 should contain :arg2
+     */
+    public function theFileShouldContain($arg1, $arg2)
+    {
+        throw new PendingException();
     }
 
 
@@ -83,8 +98,7 @@ class FilesystemContext implements Context, MatchersProviderInterface
     {
         return array(
             new FileExistsMatcher(),
-            new FileHasContentsMatcher(),
-            new FileHasContentsMatchingMatcher()
+            new FileHasContentsMatcher()
         );
     }
 }

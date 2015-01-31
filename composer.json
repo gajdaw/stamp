@@ -20,7 +20,8 @@
         "symfony/dependency-injection": "~2.6",
         "symfony/config": "~2.6",
         "symfony/process": "~2.6",
-        "twig/twig": "~1.0"
+        "twig/twig": "~1.0",
+        "cypresslab/gitelephant": ">=0.6.0"
     },
 
     "require-dev": {

@@ -1,6 +1,6 @@
 default:
   suites:
     application:
-      contexts: [ ApplicationContext, FilesystemContext ]
+      contexts: [ ApplicationContext, FilesystemContext, GitContext ]
   formatters:
     progress: ~

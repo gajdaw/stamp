@@ -2,6 +2,7 @@
 
 namespace Stamp\Console;
 
+use Stamp\Console\Command\VersionDevCommand;
 use Symfony\Component\Console\Application as BaseApplication;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -38,6 +39,7 @@ class Application extends BaseApplication
         $this->add(new MinorUpCommand());
         $this->add(new MajorUpCommand());
         $this->add(new GeneratePuppetCommand());
+        $this->add(new VersionDevCommand());
     }
 
     /**

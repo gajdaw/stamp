@@ -52,3 +52,9 @@ services:
         arguments:
             - "@stamp.actions.variable_container"
             - "@stamp.actions.file_reader"
+
+    stamp.actions.set_variable_from_git_describe:
+        class: Stamp\Action\SetVariableFromGitDescribe
+        arguments:
+            - "@stamp.actions.variable_container"
+            - "@stamp.actions.command"
