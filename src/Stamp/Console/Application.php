@@ -13,6 +13,7 @@ use Stamp\Console\Command\RawRunCommand;
 use Stamp\Console\Command\PatchUpCommand;
 use Stamp\Console\Command\MinorUpCommand;
 use Stamp\Console\Command\MajorUpCommand;
+use Stamp\Console\Command\GeneratePuppetCommand;
 use RuntimeException;
 use Stamp\Version;
 
@@ -36,6 +37,7 @@ class Application extends BaseApplication
         $this->add(new PatchUpCommand());
         $this->add(new MinorUpCommand());
         $this->add(new MajorUpCommand());
+        $this->add(new GeneratePuppetCommand());
     }
 
     /**
