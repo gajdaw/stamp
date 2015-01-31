@@ -101,8 +101,12 @@ and sets the other numbers to 0:
 
     git checkout master
     git checkout -b build
-    stamp version:dev
-    ./build
+    vagrant ssh
+    bin/stamp version:dev
+    ./build.bash
+
+    git checkout master
+    git branch -D build
 
 ## 6. Credits
 
