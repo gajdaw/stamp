@@ -42,6 +42,8 @@ Feature: Developer runs multiple substitutions
       save_variable_to_file[New version 6.248.113]
       save_variable_to_file[version: 6.248.113]
       command["git add metadata.json"]
+      command["git add a.txt"]
+      command["git add b.yml"]
       command["git commit -m "Version 6.248.113""]
       command["git tag -a v6.248.113 -m "Release 6.248.113""]
       """
@@ -99,6 +101,8 @@ Feature: Developer runs multiple substitutions
       save_variable_to_file[New version 6.249.0]
       save_variable_to_file[version: 6.249.0]
       command["git add metadata.json"]
+      command["git add a.txt"]
+      command["git add b.yml"]
       command["git commit -m "Version 6.249.0""]
       command["git tag -a v6.249.0 -m "Release 6.249.0""]
       """
@@ -156,6 +160,8 @@ Feature: Developer runs multiple substitutions
       save_variable_to_file[New version 7.0.0]
       save_variable_to_file[version: 7.0.0]
       command["git add metadata.json"]
+      command["git add a.txt"]
+      command["git add b.yml"]
       command["git commit -m "Version 7.0.0""]
       command["git tag -a v7.0.0 -m "Release 7.0.0""]
       """
