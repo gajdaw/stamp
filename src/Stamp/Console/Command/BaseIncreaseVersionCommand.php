@@ -87,7 +87,7 @@ abstract class BaseIncreaseVersionCommand extends BaseCommand
         return array();
     }
 
-    protected function getPostActions()
+    protected function getSaveActions()
     {
         return array(
             array(
@@ -98,7 +98,13 @@ abstract class BaseIncreaseVersionCommand extends BaseCommand
                     'src'      => $this->config['regex'],
                     'dest'     => $this->config['replacement'],
                 )
-            ),
+            )
+        );
+    }
+
+    protected function getPostActions()
+    {
+        return array(
             array(
                 'name' => 'command',
                 'parameters' => array(
@@ -147,6 +153,7 @@ abstract class BaseIncreaseVersionCommand extends BaseCommand
         $this->runActions($this->getPreActions(), $output);
         $this->autoSetVariable();
         $this->runActions($this->getActions(), $output);
+        $this->runActions($this->getSaveActions(), $output);
         $this->runActions($this->getPostActions(), $output);
     }
 
