@@ -118,15 +118,34 @@ abstract class BaseIncreaseVersionCommand extends BaseCommand
         return $array;
     }
 
-    protected function getPostActions()
+    protected function getGitAddActions()
     {
-        return array(
+        $array = array(
             array(
                 'name' => 'command',
                 'parameters' => array(
                     'commandTemplate' => 'git add ' . $this->config['filename'],
                 )
-            ),
+            )
+        );
+
+        if (isset($this->config['replacements'])) {
+            foreach ($this->config['replacements'] as $replacement) {
+                $array[] = array(
+                    'name' => 'command',
+                    'parameters' => array(
+                        'commandTemplate' => 'git add ' . $replacement['filename'],
+                    )
+                );
+            }
+        }
+
+        return $array;
+    }
+
+    protected function getPostActions()
+    {
+        return array(
             array(
                 'name' => 'command',
                 'parameters' => array(
@@ -170,6 +189,7 @@ abstract class BaseIncreaseVersionCommand extends BaseCommand
         $this->autoSetVariable();
         $this->runActions($this->getActions(), $output);
         $this->runActions($this->getSaveActions(), $output);
+        $this->runActions($this->getGitAddActions(), $output);
         $this->runActions($this->getPostActions(), $output);
     }
 
