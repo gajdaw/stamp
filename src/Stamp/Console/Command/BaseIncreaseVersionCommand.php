@@ -89,7 +89,7 @@ abstract class BaseIncreaseVersionCommand extends BaseCommand
 
     protected function getSaveActions()
     {
-        return array(
+        $array = array(
             array(
                 'name' => 'save_variable_to_file',
                 'parameters' => array(
@@ -100,6 +100,22 @@ abstract class BaseIncreaseVersionCommand extends BaseCommand
                 )
             )
         );
+
+        if (isset($this->config['replacements'])) {
+            foreach ($this->config['replacements'] as $replacement) {
+                $array[] = array(
+                    'name' => 'save_variable_to_file',
+                    'parameters' => array(
+                        'filename' => $replacement['filename'],
+                        'variable' => $this->config['variable'],
+                        'src'      => $replacement['regex'],
+                        'dest'     => $replacement['replacement'],
+                    )
+                );
+            }
+        }
+
+        return $array;
     }
 
     protected function getPostActions()
