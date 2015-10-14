@@ -1,7 +1,7 @@
 STAMP
 =====
 
-[![Build Status](https://travis-ci.org/gajdaw/stamp.svg?branch=master)](https://travis-ci.org/gajdaw/stamp)
+[![Build Status](https://travis-ci.org/stamp-application/stamp.svg?branch=master)](https://travis-ci.org/stamp-application/stamp)
 
 Application that makes versioning a little easier.
 
