@@ -46,11 +46,11 @@ will be stored in the file defined by `filename`.
 
 Download the latest release available at:
 
-    https://github.com/gajdaw/stamp/releases/download/v0.1.12/stamp.phar
+    https://github.com/gajdaw/stamp/releases/download/v0.2.0/stamp.phar
 
 You can do this with:
 
-    wget -O /usr/local/bin/stamp http://github.com/gajdaw/stamp/releases/download/v0.1.12/stamp.phar
+    wget -O stamp.phar http://github.com/gajdaw/stamp/releases/download/v0.2.0/stamp.phar
 
 ## 2. Running `stamp`
 
